@@ -1,0 +1,266 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,transactionHeadId,BIGINT,long,,,True,True,取引ID,"取引毎に付与するID。
+【自動更新】自動採番"
+2,transactionDateTime,DATETIME,datetime,,,True,True,取引日時,"取引日時。サーバーに送信された日時。販売日時は端末取引日時を参照。
+【自動更新】サーバー時間"
+3,transactionHeadDivision,VARCHAR,string,,True,,True,取引区分,"取引を識別する区分。
+（1：通常、2：入金、3：出金、4：預かり金、  5：預かり金返金、6：ポイント加算、     7：ポイント減算、8：ポイント失効、10:取置き、13：マイル加算、 14：マイル減算）
+※1:取引、10:取置きの場合、取引明細が必要。以外は不要（無視する）"
+4,cancelDivision,CHAR,boolean,,True,,True,取消区分,"取引の取消を識別する区分。
+(0:通常、1：取消）"
+5,"unitNonDiscountsubtota
+l",DECIMAL,decimal,,,True,True,単価値引き前小計,"取引明細の、値引き前計の合計。
+【自動更新】明細より自動算出"
+6,unitDiscountsubtotal,DECIMAL,decimal,,,True,True,単価値引き小計,"取引明細の、マイナス値の単価値引きの合計。
+【自動更新】明細より自動算出"
+7,subtotal,DECIMAL,decimal,,True,,True,小計,"取引明細の値引き後小計の合計。
+※明細合計と異なる場合エラー"
+8,subtotalDiscountPrice,DECIMAL,decimal,,,,True,小計値引き,"小計の値引き金額を設定。
+単価割引率が設定された場合、その割合から値引き金額を設定。（切捨て）"
+9,subtotalDiscountRate,DECIMAL,decimal,,,,True,小計割引率,"小計の割引を設定     （単位：％）
+デフォルトは未設定。集計は、小計値引きしか見ない。
+※設定された場合、小計計値引きは必須"
+10,"subtotalDiscountDivisio
+n",INT,integer,,,True,True,小計値引き/割引区分,"小計値引き/割引時に指定された区分を設定。
+※汎用マスタIDが設定される"
+11,pointDiscount,DECIMAL,decimal,,,,True,ポイント値引き,"使用ポイント  *  ポイント還元率。
+※消費税含む"
+12,total,DECIMAL,decimal,,True,,True,合計,"小計  -  小計値引き  -  ポイント引き  +  外税額  +  手数料  +  送料  を設定
+※算出合計と異なる場合エラー"
+13,taxExclude,DECIMAL,decimal,,,,True,外税額,"外税商品計  *  5  /  100。     ※税率が5%の場合
+※  省略時は0を設定
+※  小数点以下は税の丸め方式で指定の通り"
+14,taxInclude,DECIMAL,decimal,,,,True,内税額,"合計  /  105  *  5。※税率が5%の場合
+※省略時は0を設定
+※ver.2.0.0でtaxはtaxIncludeに項目名が変更になりました。
+※小数点以下は税の丸め方式で指定の通り"
+15,roundingDivision,CHAR,string,,,True,True,端数値引区分,"販売時の合計金額の端数を丸めるか否かを設定する（ver.2.5.0で追加）
+00:なし【初期値】
+11:一の位を四捨五入,12:一の位を切捨,13:一の位を切上
+21:十の位を四捨五入,22:十の位を切捨,23:十の位を切上
+31:百の位を四捨五入,32:百の位を切捨,33:百の位を切上
+41:千の位を四捨五入,42:千の位を切捨,43:千の位を切上
+99:手入力"
+16,roundingPrice,DECIMAL,decimal,,,True,True,端数値引額,端数値引金額（ver.2.5.0で追加）
+17,cashTotal,DECIMAL,decimal,,,True,True,内現金支払金額,"合計金額の内訳     （現金払い）
+【自動更新】※預かり金現金  -  釣銭"
+18,creditTotal,DECIMAL,decimal,,,True,True,内クレジット支払金額,"合計金額の内訳     （クレジット払い）
+【自動更新】※預かり金クレジット"
+19,deposit,DECIMAL,decimal,,,,True,預かり金,"会計時に預かった金額。
+（預かり金現金  +  預かり金クレジット  +  預かり金その他1-3)
+※預かり金を正しく設定しないと、日報が正しく表示されません。"
+20,depositCash,DECIMAL,decimal,,,,True,預かり金現金,"会計時に預かった現金金額。
+※現金支払の場合必ず設定。（預かり金現金  -  釣銭)が現金支払額に設定されま
+す。"
+21,depositCredit,DECIMAL,decimal,,,,True,預かり金クレジット,"会計時に預かったクレジット金額。
+※クレジット払いの場合必ず設定。預かり金クレジットが内クレジット支払金額に設定されます。
+※預かり金を正しく設定しないと、日報が正しく表示されません。"
+22,charge,DECIMAL,decimal,,,,True,釣銭,"現金の返却金額
+※預かり金を正しく設定しないと、日報が正しく表示されません。"
+23,changeDifference,DECIMAL,decimal,,,True,True,釣銭差額,合計  ＋  釣銭  ー  会計時に預かった金額  （ver.2.7.0で追加）
+24,amount,INT,integer,,,True,True,数量合計,"取引明細の返品以外の数量の合計
+（取引明細区分が2：返品以外の数量）
+【自動更新】"
+25,returnAmount,INT,integer,,,True,True,返品数量合計,"取引明細の返品の数量の合計
+（取引明細区分が2：返品の数量）
+【自動更新】"
+26,costTotal,DECIMAL,decimal,,,True,True,原価合計,"明細の原価計の合計
+【自動更新】明細より算出"
+27,salesHeadDivision,CHAR,boolean,,,True,True,売上ヘッダ区分,"売上明細に売上対象がい商品を含むか否かの区分。
+(0:売上対象のみ、1:売上対象外含む)
+【自動更新】明細より算出"
+28,inTaxSalesTotal,DECIMAL,decimal,,,True,True,内税対象額,"売上対象商品の内税販売合計金額
+内税販売の場合は、税込・税抜き商品を対象"
+29,outTaxSalesTotal,DECIMAL,decimal,,,True,True,外税対象額,"売上対象外商品の合計
+外税販売の税抜き商品を対象"
+30,nonTaxSalesTotal,DECIMAL,decimal,,,True,True,非課税対象額,"売上対象外商品の合計
+非課税商品の合計を対象"
+31,nonSalesTargetTotal,DECIMAL,decimal,,,True,True,売上対象外合計,"売上対象外商品の合計
+外税販売の場合、税を含まない"
+32,nonSalesTargetOutTaxTotal,DECIMAL,decimal,,,True,True,売上対象外外税合計,売上対象外商品の外税合計
+33,nonSalesTargetInTaxTotal,DECIMAL,decimal,,,True,True,売上対象外内税合計,売上対象外商品の内税合計（ver.2.0.0で追加）
+34,"nonSalesTargetTaxFree
+Total",DECIMAL,decimal,,,True,True,売上対象外免税額合計,売上対象外商品の免税額合計（ver.2.7.0で追加）
+35,nonSalesTargetCostTotal,DECIMAL,decimal,,,True,True,売上対象外原価合計,売上対象外商品の原価合計
+36,nonSalesTargetAmount,INT,integer,,,True,True,売上対象外数量合計,"取引明細の返品以外かつ売上対象外の数量の合計
+（取引明細区分が2：返品以外の数量）"
+37,"nonSalesTargetReturnA
+mount",INT,integer,,,True,True,"売上対象外返品数量合
+計","取引明細の返品かつ売上対象外の数量の合計
+（取引明細区分が2：返品の数量）"
+38,newPoint,DECIMAL,decimal,,,,True,付与ポイント,"取引で付与されるポイント。
+合計  *  ポイント率
+会員IDが設定されている場合、会員情報を更新。※省略時は0を設定
+※取置区分が10:取置きの場合、設定不可。"
+39,spendPoint,DECIMAL,decimal,,,,True,使用ポイント,"取引で使用したポイント。
+会員IDが設定されている場合、会員情報に更新。※省略時は0を設定"
+40,point,DECIMAL,decimal,,,,True,現在ポイント,"取引前のポイント
+※取引データには設定した値がそのまま設定されます。
+（変更前のスマレジの会員ポイントに上書き設定されません。）"
+41,totalPoint,DECIMAL,decimal,,,,True,合計ポイント,"取引後のポイント
+現在ポイント  +  付与ポイント  -  使用ポイント。
+※取引データには設定した値がそのまま設定されます。
+（変更後のスマレジの会員ポイントに上書き設定されません。）"
+42,currentMile,DECIMAL,decimal,,,,True,現在マイル,取引前のマイル（ver.2.3.0で追加）
+43,earnMile,DECIMAL,decimal,,,,True,獲得マイル,"取引で付与されるマイル（ver.2.3.0で追加）
+合計  *  ポイント付与率"
+44,totalMile,DECIMAL,decimal,,,,True,合計マイル,"取引後のマイル（ver.2.3.0で追加）
+現在マイル  +  獲得マイル  +  調整マイル"
+45,adjustmentMile,DECIMAL,decimal,,,,True,調整マイル,取引で手動で付与されるマイル（ver.2.3.0で追加）
+46,adjustmentMileDivision,CHAR,integer,,,,True,調整マイル区分,"調整マイルの区分（ver.2.3.0で追加）
+1:0マイル     （マイルを付与しない。「調整マイル  =  -1  *  獲得マイル」）
+2:マイル指定（指定したマイルにする。「調整マイル  =  入力値  -  獲得マイル」）                                                                                                                           3:マイル加算（マイルを加算/減算する。「調整マイル  =入力値」）
+4:マイルｎ倍（指定倍数にする。「調整マイル  =  獲得マイル  *  (n  -  1)」"
+47,adjustmentMileValue,INT,integer,,,,True,調整マイル区分値,調整マイルの入力値（ver.2.3.0で追加）
+48,storeId,INT,integer,True,True,,True,店舗ID  (PK),店舗毎に付与するID。※店舗情報が存在しない場合エラー※休止中の店舗IDを指定するとエラー（ver.2.7.0で追加）
+49,storeCode,VARCHAR,string,,,True,True,店舗コード,"店舗コード（ver.2.1.1で追加）
+※店舗マスタの店舗コードを参照"
+50,terminalId,VARCHAR,string,True,True,,True,端末ID  (PK),"店舗の端末毎に付与するID。
+※存在しない端末IDも設定可能。
+(存在しない場合精算できないので、締め済みにする必要がある。)"
+51,customerId,BIGINT,long,,,,True,会員ID,"会員毎に付与するID。数字10桁以内。
+※設定されている場合、会員取引とみなし、会員情報を更新します。
+※存在しない会員IDの場合、会員情報を更新しません。"
+52,customerCode,DATETIME,datetime,,,True,True,会員コード,半角英数記号20文字以内。ユニークキーとなる為重複不可。(2013/5/1追加)
+53,terminalTranId,VARCHAR,string,True,True,,True,端末取引ID  (PK),端末で設定された取引ID。(連携元システムで採番してください。）
+54,terminalTranDateTime,DATETIME,datetime,True,True,,True,端末取引日時  (PK),"端末で設定された取引日時。（連携元システムで処理日時を設定してくださ
+い。）"
+55,sumDivision,CHAR,integer,,,,True,締め区分,"締め処理を実施したかの区分。
+（0：未処理、1：精算処理済み、2：締め処理済み）
+※省略時は０を設定
+※１：精算処理済みは、店舗の締め方式区分が「利用する」のときのみ設定可能
+（ver.2.10.0で追記）
+※存在しない端末IDの場合、2：締め処理済みとする事"
+56,adjustmentDateTime,DATETIME,datetime,,,True,True,精算日時,精算をしたら日時が入る。
+57,sumDateTime,DATETIME,datetime,,,,True,締め日時,"締めをしたら日時が入る。（YYYY-MM-DD形式）
+※締め区分を2に設定した場合必須。締め区分を0の場合null"
+58,customerRank,VARCHAR,string,,,,True,会員ランク,"汎用マスタの「会員ランク」で登録しているコードを設定してください。
+汎用マスタに登録されていないコードを設定するとエラーになります。"
+59,customerGroupId,INT,integer,,,,True,客層ID,"客層ID。客層セクションIDが1の客層IDを設定。
+※客層情報が存在しない場合エラー"
+60,customerGroupId2,INT,integer,,,,True,客層ID2,"客層ID2。客層セクションIDが2の客層IDを設定。
+※客層情報が存在しない場合エラー"
+61,customerGroupId3,INT,integer,,,,True,客層ID3,"客層ID3。客層セクションIDが3の客層IDを設定。
+※客層情報が存在しない場合エラー"
+62,customerGroupId4,INT,integer,,,,True,客層ID4,"客層ID4。客層セクションIDが4の客層IDを設定。
+※客層情報が存在しない場合エラー"
+63,customerGroupId5,INT,integer,,,,True,客層ID5,"客層ID5。客層セクションIDが5の客層IDを設定。
+※客層情報が存在しない場合エラー"
+64,staffId,INT,integer,,,,True,販売員ID,"販売員ID。
+※販売員情報が存在しない場合エラー"
+65,staffName,VARCHAR,string,,,True,True,販売員名,"販売員名。
+【自動更新】販売員情報より自動設定"
+66,staffCode,VARCHAR,string,,,True,True,販売員コード,"販売員コード（ver.2.1.2で追加）
+※販売員マスタの販売員コードを参照"
+67,paymentCount,VARCHAR,string,,,True,True,支払回数,"クレジットの支払回数。
+※ゼウス、ペイメントマイスターご利用時
+（1：一括払い、99：リボ払い、100：ボーナス払い、101：ボーナス併用、
+n：n回払い）"
+68,slipNumber,VARCHAR,string,,,True,True,伝票番号,クレジットの伝票番号。
+69,cancelSlipNumber,VARCHAR,string,,,True,True,取消伝票番号,クレジットの取消伝票番号。
+70,authNumber,VARCHAR,string,,,True,True,承認番号,クレジットの承認番号。
+71,authDate,VARCHAR,string,,,True,True,センター処理日,クレジットのセンター処理日。
+72,cardCompany,VARCHAR,string,,,True,True,取扱カード会社,"クレジットカード会社
+例）  VISA、JCB、MASTER、AMEX、DINERSなど"
+73,memo,TEXT,string,,,,True,メモ,"入出金時のメモなどを設定。
+1000文字以内"
+74,receiptMemo,VARCHAR,string,,,,True,レシートメモ,レシートに印字するメモを設定（ver.2.7.0で追加）
+75,paymentMethodId1,INT,integer,,,,True,支払方法ID1,"支払方法ID1。
+※支払情報が存在しない場合エラー"
+76,paymentMethodName1,VARCHAR,string,,,True,True,支払方法名1,"支払方法名1。
+【自動更新】支払方法情報より自動設定"
+77,depositOthers1,DECIMAL,decimal,,,,True,預かり金その他1,"会計時に預かった金額  支払方法は支払方法1。
+※支払方法ID1が設定されている場合必須
+※取置区分が10:取置きの場合、設定不可。"
+78,paymentMethodId2,INT,integer,,,,True,支払方法ID2,"支払方法ID2。
+※支払情報が存在しない場合エラー"
+79,paymentMethodName2,VARCHAR,string,,,True,True,支払方法名2,"支払方法名2。
+【自動更新】支払方法情報より自動設定"
+80,depositOthers2,DECIMAL,decimal,,,,True,預かり金その他2,"会計時に預かった金額  支払方法は支払方法2。
+※支払方法ID2が設定されている場合必須
+※取置区分が10:取置きの場合、設定不可。"
+81,paymentMethodId3,INT,integer,,,,True,支払方法ID3,"支払方法ID3。
+※支払情報が存在しない場合エラー"
+82,paymentMethodName3,VARCHAR,string,,,True,True,支払方法名3,"支払方法名3。
+【自動更新】支払方法情報より自動設定"
+83,depositOthers3,DECIMAL,decimal,,,,True,預かり金その他3,"会計時に預かった金額  支払方法は支払方法3。
+※支払方法ID3が設定されている場合必須
+※取置区分が10:取置きの場合、設定不可。"
+84,carriage,DECIMAL,decimal,,,,True,送料,EC連携用送料。
+85,commission,DECIMAL,decimal,,,,True,手数料,EC連携用手数料。
+86,guestNumbers,INT,integer,,,,True,客数,"客数。(0以上の整数値)
+※省略時は0を設定"
+87,taxFreeSalesDivision,CHAR,integer,,,,True,免税販売区分,"免税販売区分
+(0：通常販売、1：免税販売(自動計算)、2：免税販売(強制免税適用)、3：免税販売(一般品のみ強制免税適用)、4：免税販売(消耗品のみ強制免税適用)、5：免
+税販売(自動計算・合算))"
+88,"netTaxFreeGeneralTaxI
+nclude",DECIMAL,decimal,,,,True,"内税商品の一般品免税
+額",内税商品の一般品免税額
+89,"netTaxFreeGeneralTaxE
+xclude",DECIMAL,decimal,,,,True,"外税商品の一般品免税
+額",外税商品の一般品免税額
+90,"netTaxFreeConsumable
+TaxInclude",DECIMAL,decimal,,,,True,"内税商品の消耗品免税
+額",内税商品の消耗品免税額
+91,"netTaxFreeConsumable
+TaxExclude",DECIMAL,decimal,,,,True,"外税商品の消耗品免税
+額",外税商品の消耗品免税額
+92,tags,VARCHAR,string,,,,True,取引タグ,"レジ端末よりクイックコマンドを押下した値を設定。
+和名を設定する。
+※複数ある場合は、カンマ区切りで設定"
+93,pointGivingDivision,CHAR,integer,,,,True,ポイント付与区分,"（1：税額を含める  +  利用ポイント分を含める、
+2：税額を含めない  +  利用ポイント分を含める、
+3：税額を含める  +  利用ポイント分を含めない、
+4：税額を含めない  +  利用ポイント分を含めない）（ver.2.1.1で追加）
+※未設定の場合、nullを設定"
+94,pointGivingUnitPrice,INT,integer,,,,True,"ポイント付与単位(金
+額)","ポイント付与の設定  n円をnポイントの「n円」の部分（ver.2.1.1で追加）
+（設定範囲：1円〜99999円)
+（例：10円ごとに2ポイントの場合、10円）"
+95,pointGivingUnit,DECIMAL,decimal,,,,True,"ポイント付与単位(ポ
+イント)","ポイント付与の設定  n円をnポイントの「nポイント」の部分（ver.2.1.1で追
+加）
+（設定範囲：0.01ポイント〜99999.99ポイント)"
+96,pointSpendDivision,CHAR,integer,,,,True,ポイント利用区分,"ポイント利用時の税を含む／含まないを判定（ver.2.1.5で追加）
+1：ポイント利用を現金として扱う  (税を含む値引き)
+2：ポイント利用を値引として扱う  (税を含まない値引き)
+※未設定の場合、1：ポイント利用を現金として扱う。"
+97,mileageDivision,CHAR,integer,,,,True,マイレージ利用区分,"マイレージ機能を利用するか否か（ver.2.3.0で追加）
+(0:  利用しない,  1:  利用する,  2:  ポイントの代わりに貯める)
+※未設定の場合、「0:  利用しない」を設定"
+98,mileageLabel,VARCHAR,string,,,,True,マイレージ名称,マイレージの名称（ver.2.3.0で追加）例：rejiマイル
+99,customerPinCode,VARCHAR,string,,,,True,PINコード,"自由な文字列（ver.2.1.1で追加）
+PINコードなど会員を識別する任意の文字列を設定してください。"
+100,disposeDivision,CHAR,integer,,,,True,打消区分,"0：通常、1：打消元レコード、2：打消レコード
+※0:通常と2:打消しレコードのみ設定可能（省略時は０：通常を設定）
+※打消しレコードの場合、取引明細区分は、（通常、部門売り）→返品に変換さ
+せて設定してください。"
+101,"disposeServerTransacti
+onHeadId",BIGINT,long,,,,True,打消元取引ID,"打消元取引ID
+※打消し区分が2の場合必須
+※打消元取引IDが存在しない場合エラー。省略時はnullを設定"
+102,cancelDateTime,DATETIME,datetime,,,True,True,取消日時,"取消したサーバー日時を設定。
+【自動更新】取消／打消しの場合自動設定"
+103,sellDivision,CHAR,boolean,,,,True,販売区分,"取引が外税販売、内税販売かを識別する区分。
+（0：内税販売、1：外税販売）
+※省略時は0:内税販売を設定"
+104,taxRate,DECIMAL,decimal,,,,True,税率,"税率     （単位：％）
+※未入力の場合、スマレジに設定されている消費税を設定（端末取引日時より算
+出）"
+105,taxRounding,CHAR,integer,,,,True,税の丸め方式,"税の丸めを判定（ver.2.1.5で追加）
+0:四捨五入、1:切り捨て、2:切り上げ
+※省略時は1:切り捨てを設定"
+106,"discountRoundingDivisi
+on",CHAR,integer,,,True,True,割引丸め区分,"割引の端数を丸める方法を指定する区分（ver.2.8.0で追加）
+0:四捨五入、1:切り捨て、2:切り上げ
+※2:切り上げを一律で設定"
+107,transactionUuid,VARCHAR,string,,,True,True,レシート番号,レシートに印字する番号（ver.2.1.2で追加）※未設定の場合（1970年から計算した現在秒の末尾9桁＋端末IDゼロ詰め4桁)
+108,giftReceiptValidDays,INT,integer,,,,True,ギフトレシート有効日数,ギフトレシートの有効日数（ver.3.0.0で追加）有効日数が経過しても、ギフトレシートの引換ができなくなるわけではありません。
+109,receiptIssueNumberOfTimes,INT,integer,,,True,True,領収書発行回数,領収書発行回数（ver.2.7.0で追加）
+110,pickupTransactionHeadI,BIGINT,long,,,True,True,引取取引ID,取置き取引（取引区分  10：取置）で、引取り済みの場合設定されます。※設定されていれば、取置きを引取りした取引となります。※自動で設定される項目。
+111,pickUpDate,DATE,datetime,,,,True,受取予定日,受取予定日。（YYYY-MM-DD形式）（ver.2.4.0で追加）取置き、および、取置きを引取りした取引の場合設定されます。※取置区分が10:取置きの場合、設定可能。（任意）
+112,partPayment,DECIMAL,decimal,,,,True,前受金,前受金。（ver.2.4.0で追加）取置き、および、取置きを引取りした取引の場合設定されます。※取置区分が10:取置きの場合、設定可能。（任意）※前受金  =  受領金額  -  お釣り  にならないとエラーになります。
+113,partPaymentClass,CHAR,integer,,,True,True,前受金区分,前受金区分。（ver.3.0.0で追加）1:現金、  2:クレジットカード取置き、および、取置きを引取りした取引の場合設定されます。支払方法におうじて、前受金区分は設定されます。（支払方法がない場合、1:現金が設定されます。）
+114,layawayServerTransactionHeadId,BIGINT,long,,,,True,取置取引ID,取置きを引取りした取引の取置取引IDを設定します。（ver.2.4.0で追加）※設定されていれば、取置きを引取りした取引となります。※取置き中の取引を取置き済にしたい場合、取置き中の取引IDを指定してください。取置き中以外(引取済み、取消済み)はエラーになります。
+115,disabledEdit,CHAR,boolean,,,,True,取置き販売変更不可区分,取置き販売変更不可区分（ver.2.9.0で追加）0:変更可、  1:変更不可※取置きの取引(取引区分:10)のみ設定されます。※省略時は0:変更可を設定※  1:変更不可を設定した場合、取置き販売時に商品の追加削除や会員の変更ができなくなります。
+116,updDateTime,DATETIME,datetime,,,True,True,更新日時,取引履歴の更新日時。作成時／修正時に日付が設定されます。

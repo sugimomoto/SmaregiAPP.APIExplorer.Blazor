@@ -1,0 +1,20 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageId,INT,integer,True,,True,True,入荷ID  (PK),"入荷毎に付与するID。
+【自動更新】自動採番"
+2,storageInfoId,INT,integer,,,,True,発注ID,数字10桁以内。
+3,supplierId,INT,integer,,True,,True,仕入先ID,"数字10文字以内。
+存在しない仕入先を指定するとエラー。"
+4,storageStoreId,INT,integer,,True,,True,入荷店舗ID,"数字9桁以内。
+存在しない店舗を指定するとエラー。"
+5,storageExpectedDateFro,DATE,date,,,,True,入荷予定日From,入荷日予定日を設定。(YYYY-MM-DD形式)
+6,storageExpectedDateTo,DATE,date,,,,True,入荷予定日To,入荷日予定日を設定。(YYYY-MM-DD形式)
+7,storageDate,DATE,date,,,,True,入荷日,"入荷日を設定。(YYYY-MM-DD形式)
+指定しない場合、更新日を設定。"
+8,memo,TEXT,stirng,,,,True,メモ,1000文字以内。
+9,status,CHAR,integer,,,,True,状態,"検品状況によって自動更新する。
+0：未入荷、1：検品中、2：入荷完了"
+10,identificationNo,VARCHAR,string,,,,True,識別番号,入荷情報を管理するための任意の文字列を設定出来る項目。
+11,token,VARCHAR,string,,True,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+12,modified,DATETIME,datetime,,,True,True,更新日時,入荷の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

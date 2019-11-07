@@ -1,0 +1,16 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,lossId,INT,integer,True,,,True,ロスID,"ロス毎に付与するID。
+【自動更新】自動採番登録時不要。
+更新、削除必須。"
+2,productId,BIGINT,long,True,True,,True,商品ID,"数字15桁以内。
+存在しない商品IDを指定するとエラー。
+同ロス内で、同じ商品IDを指定するとエラー。"
+3,productCode,VARCHAR,string,,,True,True,商品コード,ロス商品の商品コード。（参照時点の商品マスタの値）
+4,productName,VARCHAR,string,,,True,True,商品名,ロス商品の商品名。（参照時点の商品マスタの値）
+5,size,VARCHAR,string,,,True,True,サイズ,ロス商品のサイズ。（参照時点の商品マスタの値）
+6,color,VARCHAR,string,,,True,True,カラー,ロス商品のカラー。（参照時点の商品マスタの値）
+7,groupCode,VARCHAR,string,,,True,True,グループコード,ロス商品のグループコード。（参照時点の商品マスタの値）
+8,supplierProductNo,VARCHAR,string,,,True,True,品番,ロス商品の品番。（参照時点の商品マスタの値）
+9,quantity,INT,integer,,True,,True,数量,数字5桁以内。
+10,modified,DATETIME,datetime,,,True,True,更新日時,"ロスの更新日時。  (YYYY-MM-DD  HH:MM:SS形式)
+（ロステーブルと同じ値）"

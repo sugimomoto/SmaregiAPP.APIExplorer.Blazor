@@ -1,0 +1,10 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageInfoId,INT,integer,True,,,True,発注ID  (PK),"発注毎に付与するID。
+【自動更新】自動採番"
+2,storageStoreId,INT,integer,True,,,True,入荷店舗ID  (PK),"数字9桁以内。
+同発注内で、同じ配送店舗IDを指定するとエラー。"
+3,storageExpectedDateFro,DATE,date,,,,True,入荷予定日From,"入荷予定日fromを設定。(YYYY-MM-DD形式)
+指定しない場合、更新日を設定。"
+4,storageExpectedDateTo,DATE,date,,,,True,入荷予定日From,"入荷予定日toを設定。(YYYY-MM-DD形式)
+指定しない場合、更新日を設定。"
+5,modified,DATETIME,datetime,,,True,True,更新日時,発注の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

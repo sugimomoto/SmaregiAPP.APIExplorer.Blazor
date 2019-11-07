@@ -1,0 +1,11 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storeId,INT,integer,True,True,,True,店舗ID  (PK),数字5桁以内。
+2,productId,BIGINT,long,True,True,,True,商品ID  (PK),数字15桁以内。
+3,stockAmount,INT,integer,,True,,True,在庫数,更新する在庫数を設定。（相対値／絶対値）
+4,stockDivision,CHAR,string,,True,,True,在庫区分,"在庫を更新理由となる区分を設定。
+01：マスタ、02：売上、03：仕入、04：出庫、05：入庫、06：レンタル、
+07：取置、08：棚卸、09：調整、10：出荷、11：EC連携、12：返品、13：販促品、14：ロス、15：スマレジAPI連携、16:売上引当、17：入庫欠品
+※在庫履歴の区分に表示される区分です。注意して区分の設定を行ってください。
+※通常は15:スマレジAPI連携を設定する事を推奨します。"
+5,fromStoreId,INT,integer,,,,True,配送元店舗ID,配送元店舗ID。
+6,toStoreId,INT,integer,,,,True,配送先店舗ID,配送先店舗ID。

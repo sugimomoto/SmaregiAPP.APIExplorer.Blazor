@@ -1,0 +1,17 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,lossId,INT,integer,True,,True,True,ロスID  (PK),"ロス毎に付与するID。
+【自動更新】自動採番登録時不要。
+更新、削除必須。"
+2,storeId,INT,integer,,,True,True,店舗ID,"数字9桁以内。
+変更不可のため、更新時に登録内容と異なる日時が指定するとエラー。"
+3,division,CHAR,string,,True,,True,ロス区分,"ロス区分を設定。
+01：廃棄、02：盗難、99：その他"
+4,memo,TEXT,string,,,,True,メモ,1000文字以内。ロス理由などを設定。
+5,lossDatetime,DATETIME,datetime,,True,,True,ロス発生日時,"ロスの発生日時を設定。(YYYY-MM-DD  HH:MM:SS形式)
+登録時必須。
+変更不可のため、更新時に登録内容と異なる日時が指定するとエラー。"
+6,identificationNo,VARCHAR,string,,,,True,識別番号,ロス情報を管理するための任意の文字列を設定出来る項目。
+7,token,VARCHAR,string,,True,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+8,modified,DATETIME,datetime,,,True,True,更新日時,ロスの更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

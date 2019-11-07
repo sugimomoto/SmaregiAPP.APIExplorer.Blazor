@@ -1,0 +1,15 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,receivingId,INT,integer,True,True,,True,入庫ID  (PK),入庫毎に付与するID。
+2,shippingId,INT,integer,,,,True,出庫ID,数字10桁以内。
+3,shippingStoreId,INT,integer,,,,True,出庫店舗ID,数字9桁以内。
+4,receivingStoreId,INT,integer,,,,True,入庫店舗ID,数字9桁以内。
+5,receivingDate,DATE,date,,,,True,入庫日,"入庫日を設定。(YYYY-MM-DD形式)
+指定しない場合、更新日を設定。"
+6,memo,TEXT,string,,,,True,入庫/出庫メモ,1000文字以内。
+7,status,CHAR,integer,,,,True,状態,"検品状況によって自動更新する。
+0：未入庫、1：検品中、2：入庫完了"
+8,identificationNo,VARCHAR,string,,,,True,識別番号,出庫/入庫情報を管理するための任意の文字列を設定出来る項目。
+9,token,VARCHAR,string,,True,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+10,modified,DATETIME,datetime,,,True,True,更新日時,入庫の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

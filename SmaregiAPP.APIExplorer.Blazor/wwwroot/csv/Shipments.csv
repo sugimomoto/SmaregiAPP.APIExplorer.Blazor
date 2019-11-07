@@ -1,0 +1,25 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,shipmentId,INT,integer,True,,,True,出荷ID  (PK),"出荷毎に付与するID。
+【自動更新】自動採番
+更新、削除必須。"
+2,shipmentStoreId,INT,integer,,True,,True,出荷店舗ID,数字9桁以内。
+3,recipientType,CHAR,integer,,True,,True,受取先タイプ,"受取先タイプを設定。
+1：仕入先、3：その他"
+4,recipientId,INT,integer,,,,True,受取先ID,"数字10文字以内。
+受取先タイプに仕入先を指定する場合、仕入先IDを設定。存在しない仕入先を指定するとエラー。
+受取先タイプに仕入先を設定した場合、値を未設定にするとエラー。
+受取先タイプに仕入先以外を設定した場合、値を設定するとエラー。"
+5,recipientName,VARCHAR,string,,,,True,受取先名,"85文字以内。
+受取先タイプにその他を指定する場合、受取先名を設定。
+受取先タイプにその他を設定した場合、値を未設定にするとエラー。
+受取先タイプにその他以外を設定した場合、値を設定するとエラー。"
+6,shipmentDivision,CHAR,string,,True,,True,出荷区分,"出荷区分を設定。
+0：出荷、1：返品、2：販促品"
+7,shipmentDate,DATE,date,,True,,True,出荷日,出荷日を設定。(YYYY-MM-DD形式)
+8,status,CHAR,integer,,True,,True,状況,"状況を設定。
+0：未出荷、2：出荷完了"
+9,identificationNo,VARCHAR,string,,,,True,識別番号,出荷情報を管理するための任意の文字列を設定出来る項目。
+10,token,VARCHAR,string,,True,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+11,modified,DATETIME,datetime,,,True,True,更新日時,出荷の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

@@ -1,0 +1,5 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,stocktakingInfoId,INT,integer,True,,,True,棚卸ID  (PK),"棚卸毎に付与するID。
+※必須項目。棚卸が未完了の場合エラー。"
+2,baseDate,DATE,date,,,,True,基準日,"指定した棚卸在庫高から、基準日終了時点の在庫高を算出します。
+※必須項目"

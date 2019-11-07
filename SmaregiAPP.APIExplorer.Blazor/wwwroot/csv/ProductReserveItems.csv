@@ -1,0 +1,5 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,productId,BIGINT,long,True,True,,True,商品ID  (PK),"同一の商品IDがテーブルに存在する場合、対象のデータを更新。
+数字15桁以内。商品IDは必ず設定してください。"
+2,no,INT,integer,True,True,,True,項目番号  (PK),1-99  の項目番号。
+3,value,VARCHAR,string,,True,,True,値,85文字以内。予備項目の値。

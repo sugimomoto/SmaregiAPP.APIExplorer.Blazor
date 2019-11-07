@@ -1,0 +1,216 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime;
+@inject HttpClient Http
+@inherits SmaregiAPP.APIExplorer.Blazor.Data.Common.IndexBase;
+
+
+    <BSContainer>
+
+        @if (!String.IsNullOrEmpty(AlertMessage))
+        {
+            <BSAlert Color="Color.Warning">
+                @AlertMessage
+            </BSAlert>
+        }
+
+        <BSCard CardType="CardType.Card">
+            <BSCard CardType="CardType.Body">
+                <BSCard CardType="CardType.Title">STEP1. テーブルを選択してください。</BSCard>
+
+                <BSBasicForm>
+
+                    <!-- テーブル選択 -->
+                    <BSFormGroup IsRow="true">
+                        <BSLabel For="staticEmail" SM="2">Table Name</BSLabel>
+                        <BSCol SM="10">
+                            <select class="form-control-sm" @onchange="@ChangeColumnList">
+                                <option id="0" value="none"></option>
+                                @foreach (var table in tables)
+                                {
+                                    <option id="@table.No" value="@table.CDataTableName">@table.TableName : @table.TableNameJp</option>
+                                }
+                            </select>
+                        </BSCol>
+                    </BSFormGroup>
+
+                </BSBasicForm>
+
+            </BSCard>
+        </BSCard>
+
+        <p></p>
+
+        <BSCard CardType="CardType.Card">
+            <BSCard CardType="CardType.Body">
+                <BSCard CardType="CardType.Title">STEP2. 取得したい項目とフィルター条件を指定してください。</BSCard>
+
+
+                <!-- 項目選択・フィルター -->
+                <BSFormGroup>
+
+                    <BSFormGroup Class="text-right">
+                        <BSButton OnClick="@(async () => await JSRuntime.InvokeVoidAsync("tableDataManager.setAllChecked", true))">AllCheck</BSButton>
+                        <BSButton OnClick="@(async () => await JSRuntime.InvokeVoidAsync("tableDataManager.setAllChecked", false))">AllClear</BSButton>
+                    </BSFormGroup>
+
+
+                    <BSTable IsSmall="true" IsBordered="true" IsStriped="true" Class="overflow-auto" style="max-height: 200px;">
+                        <BSTableHead>
+                            <BSTableRow>
+                                <BSTableHeadCell>Select</BSTableHeadCell>
+                                <BSTableHeadCell>Id</BSTableHeadCell>
+                                <BSTableHeadCell>ColumnName</BSTableHeadCell>
+                                <BSTableHeadCell>ColumnName(J)</BSTableHeadCell>
+                                <BSTableHeadCell>ColumnType</BSTableHeadCell>
+                                <BSTableHeadCell>ConditionType</BSTableHeadCell>
+                                <BSTableHeadCell>ConditionValue</BSTableHeadCell>
+                                <BSTableHeadCell>Description</BSTableHeadCell>
+                            </BSTableRow>
+                        </BSTableHead>
+                        <BSTableBody>
+                            @foreach (var column in columnInput)
+                            {
+                                <BSTableRow>
+                                    <BSTableCell>
+                                        <BSBasicInput Class="form-control-sm" InputType="InputType.Checkbox" Value="@column.Select"></BSBasicInput>
+                                    </BSTableCell>
+                                    <BSTableCell>@column.No</BSTableCell>
+                                    <BSTableCell>@column.Name</BSTableCell>
+                                    <BSTableCell>@column.JapaneseLabel</BSTableCell>
+                                    <BSTableCell>@column.Type</BSTableCell>
+                                    <BSTableCell>
+                                        <BSBasicInput Class="form-control-sm" InputType="InputType.Select" Value="@column.ConditionType" @onselect="@SetColumnInput">
+                                            <option></option>
+                                            <option>=</option>
+                                            <option>like</option>
+                                            <option>&lt;</option>
+                                            <option>&lt;=</option>
+                                            <option>&gt;</option>
+                                            <option>&gt;=</option>
+                                        </BSBasicInput>
+                                    </BSTableCell>
+                                    <BSTableCell><BSBasicInput Class="form-control-sm" InputType="InputType.Text" Value="@column.ConditionValue" @onchange="@SetColumnInput"></BSBasicInput></BSTableCell>
+                                    <BSTableCell>@column.Description</BSTableCell>
+                                </BSTableRow>
+                            }
+
+                            @if (columnInput.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="8">No Records</td>
+                                </tr>
+                            }
+                        </BSTableBody>
+
+                    </BSTable>
+                </BSFormGroup>
+
+                <!-- 並び替え1 -->
+                <BSFormGroup IsRow="true">
+                    <BSLabel For="OrderByLable1" SM="2">Order BY 1</BSLabel>
+                    <BSCol SM="3">
+                        <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByColumn1 = e.Value.ToString())">
+                            <option id="0" value="none"></option>
+                            @foreach (var column in columnInput)
+                            {
+                                <option id="@column.No" value="@column.Name">@column.Name : @column.JapaneseLabel</option>
+                            }
+
+                        </select>
+                    </BSCol>
+                    <BSCol SM="2">
+                        <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByType1 = e.Value.ToString())">
+                            <option>ASC</option>
+                            <option>DESC</option>
+                        </select>
+                    </BSCol>
+                </BSFormGroup>
+
+                <!-- 並び替え1 -->
+                <BSFormGroup IsRow="true">
+                    <BSLabel For="OrderByLable2" SM="2">Order BY 2</BSLabel>
+                    <BSCol SM="3">
+                        <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByColumn2 = e.Value.ToString())">
+                            <option id="0" value="none"></option>
+                            @foreach (var column in columnInput)
+                            {
+                                <option id="@column.No" value="@column.Name">@column.Name : @column.JapaneseLabel</option>
+                            }
+                        </select>
+                    </BSCol>
+                    <BSCol SM="2">
+                        <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByType2 = e.Value.ToString())">
+                            <option>ASC</option>
+                            <option>DESC</option>
+                        </select>
+                    </BSCol>
+                </BSFormGroup>
+
+                <BSFormGroup IsRow="true">
+                    <BSLabel For="PageLable" SM="2">Page</BSLabel>
+                    <BSCol SM="3">
+                        <BSBasicInput Id="PageValue" InputType="InputType.Number" PlaceHolder="1~X" Class="form-control-sm" @bind-Value="@Page"></BSBasicInput>
+                    </BSCol>
+                    <BSLabel For="LimitLable" SM="2">Limit</BSLabel>
+                    <BSCol SM="3">
+                        <BSBasicInput Id="LimitValue" InputType="InputType.Number" PlaceHolder="1~1000" Class="form-control-sm" @bind-Value="@Limit"></BSBasicInput>
+                    </BSCol>
+                </BSFormGroup>
+
+            </BSCard>
+        </BSCard>
+
+        <p></p>
+
+        <BSCard CardType="CardType.Card">
+            <BSCard CardType="CardType.Body">
+                <BSCard CardType="CardType.Title">STEP3. 設定内容を確認し、Generateボタンをクリックしてください。Smaregi用リクエストデータが生成されます。</BSCard>
+
+                <BSFormGroup>
+                    <BSButton Color="Color.Primary" OnClick="@GenerateRequest">Generate</BSButton>
+                    <BSButton Color="Color.Secondary" OnClick="@(() => RequestBody = "")">Clear</BSButton>
+                </BSFormGroup>
+
+                <BSBasicForm IsRow="true">
+
+                    <BSFormGroup>
+                        <BSLabel For="exampleText">Request Body</BSLabel>
+                        <BSBasicInput InputType="InputType.TextArea" Name="text" Id="RequestValue" Rows="10" @bind-Value="@RequestBody"></BSBasicInput>
+                    </BSFormGroup>
+
+                </BSBasicForm>
+            </BSCard>
+
+        </BSCard>
+
+        <p></p>
+
+        <BSCard CardType="CardType.Card">
+            <BSCard CardType="CardType.Body">
+                <BSCard CardType="CardType.Title">STEP4. ContractIdとAccessTokenを指定することで、実際にSmaregi APIにアクセスできます。</BSCard>
+
+                <BSFormGroup IsRow="true">
+                    <BSLabel For="ContactIdLable" SM="2">ContactId</BSLabel>
+                    <BSCol SM="3">
+                        <BSBasicInput Id="ContactIdValue" InputType="InputType.Text" Class="form-control-sm" @bind-Value="@ContactId"></BSBasicInput>
+                    </BSCol>
+                    <BSLabel For="AccessTokenLable" SM="2">AccessToken</BSLabel>
+                    <BSCol SM="3">
+                        <BSBasicInput Id="AccessTokenValue" InputType="InputType.Password" Class="form-control-sm" @bind-Value="@AccessToken"></BSBasicInput>
+                    </BSCol>
+                </BSFormGroup>
+
+                <BSFormGroup>
+                    <BSButton Color="Color.Primary" OnClick="@Send">Send</BSButton>
+                </BSFormGroup>
+
+                <BSFormGroup>
+                    <BSLabel For="exampleText">Response</BSLabel>
+                    <BSBasicInput InputType="InputType.TextArea" Name="text" Id="ResponseValue" Rows="10" @bind-Value="@Response"></BSBasicInput>
+                </BSFormGroup>
+
+            </BSCard>
+
+        </BSCard>
+
+    </BSContainer>

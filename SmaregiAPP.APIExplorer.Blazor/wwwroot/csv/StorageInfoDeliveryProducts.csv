@@ -1,0 +1,17 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageInfoId,INT,integer,True,,,True,発注ID  (PK),"発注毎に付与するID。
+【自動更新】自動採番"
+2,storeId,INT,integer,True,,,True,入荷店舗ID  (PK),"数字9桁以内。
+発注配送先で設定されていない配送店舗IDが設定された場合エラー。
+同発注、同商品内で、同じ配送店舗IDを指定するとエラー。"
+3,productId,BIGINT,long,True,,,True,商品ID  (PK),"数字15桁以内。
+存在しない商品IDを指定するとエラー。
+同発注、同入荷店舗ID内で、同じ商品IDを指定するとエラー。"
+4,productCode,VARCHAR,string,,,True,True,商品コード,発注商品の商品コード。（参照時点の商品マスタの値）
+5,productName,VARCHAR,string,,,True,True,商品名,発注商品の商品名。（参照時点の商品マスタの値）
+6,size,VARCHAR,string,,,True,True,サイズ,発注商品のサイズ。（参照時点の商品マスタの値）
+7,color,VARCHAR,string,,,True,True,カラー,発注商品のカラー。（参照時点の商品マスタの値）
+8,groupCode,VARCHAR,string,,,True,True,グループコード,発注商品のグループコード。（参照時点の商品マスタの値）
+9,supplierProductNo,VARCHAR,string,,,True,True,品番,発注商品の品番。（参照時点の商品マスタの値）
+10,quantity,INT,integer,,True,,True,入荷数,数字5桁以内。
+11,modified,DATETIME,datetime,,,True,True,更新日時,発注の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

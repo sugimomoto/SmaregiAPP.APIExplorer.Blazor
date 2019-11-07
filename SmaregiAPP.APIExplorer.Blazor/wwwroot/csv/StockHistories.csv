@@ -1,0 +1,15 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,id,BIGINT,long,True,,True,True,ID  (PK),ID。自動で設定されます。
+2,updDateTime,DATETIME,datetime,,,True,True,更新日時,データ更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+3,targetDateTime,DATETIME,datetime,,,True,True,対象日時,"在庫数を変更した時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+棚卸、ロス登録時に日時を指定する場合があります。
+通常は更新日時と同じ日時が設定されます。"
+4,productId,BIGINT,long,,,True,True,商品ID,数字15桁以内。
+5,storeId,INT,integer,,,True,True,店舗ID,数字5桁以内。
+6,amount,INT,integer,,,True,True,数量,更新在庫数（相対値で設定）
+7,stockAmount,INT,integer,,,True,True,在庫数,処理後の在庫数。
+8,stockDivision,CHAR,string,,,True,True,在庫区分,"在庫を更新理由となる区分を設定。
+01：マスタ、02：売上、03：仕入、04：出庫、05：入庫、06：レンタル、
+07：取置、08：棚卸、09：調整、10：出荷、11：EC連携、12：返品、13：販促品、14：ロス、15：スマレジAPI連携、16:売上引当、17：入庫欠品"
+9,fromStoreId,INT,integer,,,True,True,配送元店舗ID,配送元店舗ID。
+10,toStoreId,INT,integer,,,True,True,配送先店舗ID,配送先店舗ID。

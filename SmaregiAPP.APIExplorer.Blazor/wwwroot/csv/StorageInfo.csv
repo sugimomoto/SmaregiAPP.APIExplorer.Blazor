@@ -1,0 +1,22 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageInfoId,INT,integer,True,,,True,発注ID  (PK),"発注毎に付与するID。
+【自動更新】自動採番
+状態が仮発注、商品分配済のもののみ削除可。
+状態が商品配分済の場合、発注商品の原価のみ編集可。状態が仮発注の場合、すべての項目の編集可。
+上記以外の状態のものを編集、削除するとエラー。"
+2,recipientOrderId,INT,integer,,,,True,発注先ID,"数字10文字以内。
+発注先となる仕入先IDを設定。
+存在しない仕入先を指定するとエラー。
+仮発注の場合のみ、更新可。"
+3,orderedDate,DATE,date,,,,True,発注日,"発注日を設定。(YYYY-MM-DD形式)
+登録時必須。
+仮発注の場合のみ、更新可。"
+4,status,CHAR,integer,,,,True,状態,"状態を設定。
+2：商品分配済、3：入荷検品中、4：入荷完了、5：仮発注商品分配済,  仮発注以外を設定するとエラー。
+商品分配済を設定すると入荷情報を作成する。
+仮発注の場合のみ、更新可。"
+5,identificationNo,VARCHAR,string,,,,True,識別番号,発注情報を管理するための任意の文字列を設定出来る項目。
+6,token,VARCHAR,string,,True,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+7,modified,DATETIME,datetime,,,True,True,更新日時,発注の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

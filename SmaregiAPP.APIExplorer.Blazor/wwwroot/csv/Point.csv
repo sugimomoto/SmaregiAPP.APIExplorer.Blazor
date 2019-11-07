@@ -1,0 +1,9 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Point,Japanese Label,Desc
+1,customerId,BIGINT,long,,,,True,会員ID,"数字10桁以内。会員IDもしくは会員コードのどちらかが必須。
+両方入力された場合は会員IDが優先される。"
+2,customerCode,VARCHAR,string,,,,True,会員コード,半角英数記号20文字以内。ユニークキーとなる為重複不可。
+3,point,DECIMAL,decimal,,,,True,ポイント,ポイント変動数（相対値／絶対値）
+4,storeId,INT,integer,,,,True,対象店舗ID,"数字5桁以内。
+※店舗情報が存在しない場合エラー
+※倉庫の店舗IDを指定するとエラー
+※休止中の店舗IDを指定するとエラー（ver.2.7.0で追加）"

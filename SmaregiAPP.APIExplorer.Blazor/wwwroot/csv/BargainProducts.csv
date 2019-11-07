@@ -1,0 +1,9 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,bargainProductId,BIGINT,long,True,True,,True,セール商品ID  (PK),"同一のセール商品IDがテーブルに存在する場合、対象のデータを更新。
+数字15桁以内。更新時、セール商品IDが未設定の場合自動採番します。"
+2,bargainId,INT,integer,,True,,True,セールID,数字9桁以内。数字9桁以内。存在しないセールIDを指定するとエラー。
+3,targetDivision,CHAR,integer,,True,,True,対象区分,"1:カテゴリー,  2:商品,  3:グループコードのいずれかを設定。"
+4,targetId,VARCHAR,string,,True,,True,対象ID,"カテゴリーID,  商品ID,  グループコードのいずれかを設定。
+存在しない対象IDを指定するとエラー。"
+5,division,CHAR,integer,,True,,True,割引区分,1:割引  2:値引  3:価格指定のいずれかを設定。
+6,value,DECIMAL,decimal,,True,,True,値,割引、値引き、価格指定の値

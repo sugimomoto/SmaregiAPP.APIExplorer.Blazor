@@ -1,0 +1,8 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,stocktakingInfoId,INT,integer,True,,,True,棚卸ID  (PK),棚卸毎に付与するID。
+2,stocktakingHeadId,INT,integer,True,,,True,棚卸ヘッダID  (PK),棚卸分割毎に付与するID。
+3,divisionCode,VARCHAR,string,,,,True,分割コード,"分割対象のコード、IDを設定。
+分割単位「分割なし」の場合：""0""  固定
+分割単位「部門」の場合：部門IDを設定"
+4,modified,DATETIME,datetime,,,,True,更新日時,"棚卸情報の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)
+（棚卸情報テーブルと同じ値）"

@@ -1,0 +1,35 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,shippingId,INT,integer,True,,,True,出庫ID  (PK),"出庫毎に付与するID。
+【自動更新】自動採番
+状態が未出庫、未入庫のもののみ削除可。
+状態が未出庫、未入庫のもの以外を削除しようとした場合エラー。
+※更新は、未出庫、未入庫、出庫修正依頼ありのもののみ可能。"
+2,shippingStoreId,INT,integer,,,,True,出庫店舗ID,"数字9文字以内。
+登録時必須。
+存在しない店舗IDを指定するとエラー。
+変更不可のため、更新時に登録内容と異なる日時が指定するとエラー。"
+3,storageStoreId,INT,integer,,,,True,入庫店舗ID,"数字9文字以内。
+登録時必須。
+存在しない店舗IDを指定するとエラー。
+出庫店舗と入庫店舗が同じ場合エラー。"
+4,storageExpectedDateFro,DATE,date,,,,True,入庫予定日From,入庫予定日Fromを設定。(YYYY-MM-DD形式)
+5,storageExpectedDateTo,DATE,date,,,,True,入庫予定日To,入庫予定日Toを設定。(YYYY-MM-DD形式)
+6,shippingDate,DATE,date,,,,True,出庫日,出庫日を設定。(YYYY-MM-DD形式)
+7,storageDesiredDate,DATE,date,,,,True,出庫希望日,出庫希望日を設定。(YYYY-MM-DD形式)
+8,memo,TEXT,string,,,,True,入庫/出庫メモ,1000文字以内。
+9,status,CHAR,integer,,,,True,状態,"状況を指定する。
+0：未出庫、1：未入庫、2：入庫検品中、3：入庫完了登録時は未出庫、未入庫のみ指定可能。
+更新時は未出庫のものにかぎり、未出庫、未入庫のみ指定可能。上記以外の状況の場合は更新不可。"
+10,"modificationRequestSta
+tus",CHAR,integer,,,,True,修正依頼ステータス,"出庫情報の修正依頼ステータスを指定する。
+0：修正依頼なし、1：修正依頼あり、2：修正完了更新時のみ指定可。
+状況が入庫検品中の場合のみ、更新可。"
+11,"modificationRequestDat
+eTime",DATETIME,datetime,,,,True,修正依頼日時,【自動更新】修正依頼を行った日時を設定。
+12,"modificationRequestChe
+ckedDateTime",DATETIME,datetime,,,,True,修正依頼確認完了日時,【自動更新】修正依頼ステータスが修正完了になった日時を設定。
+13,identificationNo,VARCHAR,string,,,,True,識別番号,出庫/入庫情報を管理するための任意の文字列を設定出来る項目。
+14,token,VARCHAR,string,,,,True,トークン,"リクエストを一意に識別するためのトークン文字列を設定。
+重複するトークン文字列が指定された場合、スルーします。
+設定例：リクエスト日時（YYYYMMDDHHMMSS）+2桁の連番"
+15,modified,DATETIME,datetime,,,True,True,更新日時,出庫の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

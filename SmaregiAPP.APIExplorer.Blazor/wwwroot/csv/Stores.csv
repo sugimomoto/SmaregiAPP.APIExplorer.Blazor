@@ -1,0 +1,41 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storeId,INT,integer,True,,,True,店舗ID  (PK),店舗毎に付与するID。
+2,storeCode,VARCHAR,string,,,,True,店舗コード,店舗コード（ver.2.0.0で追加）
+3,storeName,VARCHAR,string,,,,True,店舗名,店舗名。
+4,storeAbbr,VARCHAR,string,,,,True,店舗名略称,店舗名略称。
+5,division,CHAR,integer,,,,True,店舗区分,店舗区分（1：通常店舗、2：倉庫）（ver.2.0.0で追加）
+6,postCode,VARCHAR,string,,,,True,郵便番号,店舗郵便番号     （ハイフンあり）。
+7,address,VARCHAR,string,,,,True,住所,店舗住所
+8,phoneNumber,VARCHAR,string,,,,True,電話番号,店舗電話番号     （ハイフン付）。
+9,faxNumber,VARCHAR,string,,,,True,FAX番号,店舗FAX番号     （ハイフン付）。
+10,mailAddress,VARCHAR,string,,,,True,メールアドレス,店舗メールアドレス。
+11,homepage,VARCHAR,string,,,,True,ホームページ,店舗ホームページ。
+12,tempTranMailAddress,TEXT,string,,,,True,"仮取引登録時送信先ア
+ドレス",仮取引登録時に送信するメールアドレス。
+13,priceChangeFlag,TINYINT,integer,,,,True,端末価格変更許可フラ,"iPod,iPadで販売価格を変更可能か否かの区分。
+（0：変更不可、）"
+14,sellDivision,CHAR,boolean,,,,True,販売区分,"店舗での販売時の消費税の扱いを指定する区分。
+（0：内税販売、1：外税販売）"
+15,sumProcDivision,CHAR,boolean,,,,True,締め方式区分,"締め方法を指定する区分。
+（0：締め処理を利用する、1：締め処理を利用しない）"
+16,sumDateChangeTime,CHAR,string,,,,True,締め日付変更時間,"日付変更時間。締め処理時に使用  (HHMM形式)
+締め方式区分が1：リアルタイム方式の場合必須"
+17,sumRefColumn,CHAR,string,,,,True,締め参照時間項目,締め処理を行う時に参照する時間。締め処理時に使用。
+18,pointNotApplicable,CHAR,boolean,,,,True,ポイント対象区分,ポイント対象区分（0:ポイント対象、1:ポイント対象外）
+19,taxFreeDivision,CHAR,integer,,,,True,免税区分,免税区分（0：対象外、1：一般品、2：消耗品）
+20,maxBundleProductCoun,INT,integer,,,,True,バンドル登録最大件数,簡易バンドル商品登録最大件数。（ver.2.0.0で追加）
+21,roundingDivision,CHAR,string,,,,True,端数値引区分,"販売時の合計金額の端数を丸めるか否かを設定する（ver.2.5.0で追加）
+00:なし
+11:一の位を四捨五入,12:一の位を切捨,13:一の位を切上
+21:十の位を四捨五入,22:十の位を切捨,23:十の位を切上
+31:百の位を四捨五入,32:百の位を切捨,33:百の位を切上
+41:千の位を四捨五入,42:千の位を切捨,43:千の位を切上
+99:手入力"
+22,"discountRoundingDivisi
+on",CHAR,string,,,,True,割引丸め区分,"割引の端数を丸める方法を指定する区分（ver.2.8.0で追加）
+0:四捨五入、1:切り捨て、2:切り上げ"
+23,pauseFlag,BOOLEAN,boolean,,,,True,休止フラグ,数字１桁。休止フラグ（0：通常、1：休止）（ver.2.5.0で追加）
+24,pointUseDivision,CHAR,boolean,,,,True,ポイント使用,"ポイント機能を使用するか。(0：使用しない、1：使用する）
+（ver.2.0.0で追加）"
+25,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+26,updDateTime,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

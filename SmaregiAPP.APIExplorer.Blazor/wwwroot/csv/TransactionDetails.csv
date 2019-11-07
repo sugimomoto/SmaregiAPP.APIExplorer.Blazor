@@ -1,0 +1,118 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,transactionHeadId,BIGINT,long,True,,True,True,取引ID,取引毎に付与するID。【自動更新】自動採番
+2,transactionDateTime,DATETIME,datetime,,,True,True,取引日時,取引テーブルの取引日時。（取引テーブルを参照）【自動更新】自動採番
+3,transactionDetailId,INT,integer,True,,,True,取引明細ID,取引毎の明細に付与するID。この項目を設定しない場合、取引毎に0から採番。設定する場合は0〜999まで。（ver.2.10.0で追記）【自動更新】自動採番
+4,parentTransactionDetailId,INT,integer,True,,,True,親取引明細ID,"紐付く親の取引明細がある場合、その取引明細IDを設定。※商品区分が、0（通常販売）,  4（バンドル(親)）の場合は設定できず、7（バンドル子）,  8（バンドル値引）の時は、バンドル(親)の  取引明細IDを設定しなければならない。（ver.2.10.0で追記）"
+5,transactionDetailDivision,CHAR,integer,,True,,True,取引明細区分,取引明細を識別する区分。（1：通常、2：返品、3：部門売り）
+6,productId,BIGINT,long,,,,True,商品ID,商品毎に付与するID。数字15桁以内。※商品情報が存在しない場合nullを設定。省略時null
+7,productCode,VARCHAR,string,,,,True,商品コード,商品コード。（半角英数記号  20桁以内）※設定時、そのまま設定。※省略時、商品IDが設定されている場合、マスタから設定。以外はnull
+8,productName,VARCHAR,string,,,,True,商品名,商品名。(85文字以内)※設定時、そのまま設定。※省略時、商品IDが設定されている場合、マスタから設定。以外はnull
+9,taxDivision,CHAR,integer,,,,True,税区分,商品単価の税区分。(0：税込、1：税抜、2：非課税) ※設定時そのまま設定 ※省略時、商品IDが設定されている場合、マスタから設定。以外は0：税込
+10,price,DECIMAL,decimal,,,,True,商品単価,"当時の商品単価。
+※設定時そのまま設定
+※省略時、商品IDが設定されている場合、マスタから設定。以外は0円"
+11,salesPrice,DECIMAL,decimal,,True,,True,販売単価,"当時の販売価格。ターミナルで任意入力。
+単価を修正した場合に設定。デフォルトは商品単価。"
+12,unitDiscountPrice,DECIMAL,decimal,,,,True,単品値引,"販売単価の値引き金額を設定。
+単価割引率が設定された場合、その割合から値引き金額を設定。（切捨て）"
+13,unitDiscountRate,DECIMAL,decimal,,,,True,単品割引,"単品の割引率を設定。（単位：％）
+※設定された場合、単品値引は必須"
+14,unitDiscountDivision,INT,integer,,,True,True,単品値引き/割引区分,"単品値引き/割引時に指定された区分を設定。
+※汎用マスタIDが設定される"
+15,cost,DECIMAL,decimal,,,,True,原価,"商品の原価。(半角数字  整数部分8桁、少数部5桁  (小数点含む最大14桁))
+※設定時そのまま設定
+※省略時、商品IDが設定されている場合、マスタから設定。以外は0円"
+16,quantity,INT,integer,,True,,True,数量,購入数。
+17,unitNonDiscountSum,DECIMAL,decimal,,,True,True,値引き前計,販売価格×数量。
+18,unitDiscountSum,DECIMAL,decimal,,,True,True,単価値引き計,単価値引き×数量。
+19,unitDiscountedSum,DECIMAL,decimal,,,True,True,値引き後計,値引き前計  -  単価値引き計。
+20,costSum,DECIMAL,decimal,,,True,True,原価計,原価×数量。
+21,categoryId,INT,integer,,,,True,部門ID,"商品に紐付く部門毎に付与するID。数字9桁以内。
+※部門情報が存在しない場合nullを設定。
+省略時、商品IDが設定されている場合、商品マスタから設定。以外はnull
+※商品IDが設定されている場合、商品情報の部門IDと一致しないとエラー"
+22,categoryName,VARCHAR,string,,,,True,部門名,"商品に紐付く部門名。(85文字以内)
+※設定時、そのまま設定。
+※省略時、部門IDが設定されている場合、マスタから設定。以外はnull"
+23,discriminationNo,VARCHAR,string,,,,True,識別番号,明細行を識別できる番号を追加。（半角英数記号  20桁以内）
+24,salesDivision,CHAR,boolean,,,,True,売上区分,"売上計上するか否かの区分。（0:売上対象、1:売上対象外）
+※省略時、商品IDが設定されている場合、商品マスタから設定。以外は0：売上
+対象を設定"
+25,productDivision,CHAR,integer,,,,True,商品区分,############################################
+26,pointNotApplicable,CHAR,boolean,,,True,True,ポイント対象,"ポイント対象にするか否かの設定（0:ポイント対象、1:ポイント対象外）
+※取置き登録時、マスタ情報を参照し設定します。(ver.3.1.0  追記)"
+27,taxFreeDivision,CHAR,integer,,,True,True,免税区分,"免税区分の設定。商品マスタより自動で設定。（ver.2.1.0で追加）
+(0：対象外、1：一般品、2：消耗品)"
+28,taxFreeCommodityPrice,DECIMAL,decimal,,,True,True,免税対象額,免税対象額（ver.2.1.5で追加）
+29,taxFree,DECIMAL,decimal,,,True,True,免税額,免税額（ver.2.1.5で追加）
+30,productBundleGroupId,INT,integer,,,,True,"商品バンドルグループ
+ID","商品バンドル販売の明細の場合、商品バンドルグループのIDを設定。
+商品バンドルグループに存在するIDを指定しなければならない。
+この項目を設定する明細の商品区分は「4：バンドル(親)」でなければならない
+（ver.2.10.0で追加）"
+31,"discountPriceProportion
+al",DECIMAL,decimal,,,True,True,小計値引き按分,"小計値引きの按分を設定
+端数処理は銀行丸め。誤差は最終行で調整"
+32,"discountPointProportion
+al",DECIMAL,decimal,,,True,True,ポイント値引き按分,"ポイント値引きの按分を設定
+端数処理は銀行丸め。誤差は最終行で調整"
+33,taxIncludeProportional,DECIMAL,decimal,,,True,True,内税按分,"内税を按分した金額を設定（ver.2.0.0で追加）
+端数処理は銀行丸め。誤差は最終行で調整"
+34,taxExcludeProportional,DECIMAL,decimal,,,True,True,外税按分,"外税を按分した金額を設定
+端数処理は銀行丸め。誤差は最終行で調整"
+35,"productBundleProportio
+nal",DECIMAL,decimal,,,True,True,商品バンドル値引按分,"商品バンドル値引きを按分した金額を設定（ver.2.0.0で追加）
+端数処理は銀行丸め。誤差は最終行で調整"
+36,"staffDiscountProportion
+al",DECIMAL,decimal,,,True,True,社員値引き按分,"適用社員値引きを按分した金額を設定（ver.2.1.5で追加）
+端数処理は銀行丸め。誤差は最終行で調整"
+37,"bargainDiscountProporti
+onal",DECIMAL,decimal,,,True,True,セール値引き按分,"適用セール値引きを按分した金額を設定（ver.2.1.5で追加）
+端数処理は銀行丸め。誤差は最終行で調整"
+38,"roundingPriceProportion
+al",DECIMAL,decimal,,,True,True,端数値引額按分,"端数値引額の按分した金額を設定（ver.2.5.0で追加）
+端数処理は銀行丸め。誤差は最終行で調整"
+39,"inventoryReservationDi
+vision",CHAR,boolean,,,True,True,在庫引当区分,"在庫引当商品か否かの区分（0:  通常商品  1:  在庫引当商品）
+自動設定で設定する。"
+40,groupCode,VARCHAR,string,,,True,True,グループコード,"グループコード（ver.2.1.1で追加）
+※商品マスタのグループコードを参照     販売時のグループコードを返却"
+41,updDateTime,DATETIME,datetime,,,True,True,更新日時,"取引履歴の更新日時。作成時／修正時に日付が設定されます。（ver.2.0.0で追
+加）"
+42,"productStaffDiscountRa
+te",INT,integer,,,True,True,商品毎の社員割引率,"社員販売時のみ設定
+商品の社販販売割引率"
+43,staffRank,VARCHAR,string,,,True,True,社員ランクコード,"社員販売時のみ設定
+社員ランクのコードを設定"
+44,staffRankName,VARCHAR,string,,,True,True,社員ランク名,"社員販売時のみ設定
+社員ランクの名称を設定"
+45,staffDiscountRate,DECIMAL,decimal,,,True,True,社員販売割引率,"社員販売時のみ設定
+社員販売の割引率"
+46,staffDiscountDivision,INT,integer,,,True,True,社員販売割引区分,"社員販売時のみ設定
+１ビット目:  商品マスタの社員販売最大値引率を考慮（する  or  しない）
+２ビット目:  セール価格と社員販売割引を掛け合わせて適用（する  or  しない）
+３ビット目:  セール価格と社員販売価格を比較して安い方を適用（する  or  しない）
+４ビット目:  セール価格と社員販売価格を比較して高い方を適用（する  or  しな"
+47,applyStaffDiscountRate,DECIMAL,decimal,,,True,True,適用社員販売割引率,"い）
+セール販売時のみ設定
+適用した社員販売の割引率"
+48,applyStaffDiscountPrice,DECIMAL,decimal,,,True,True,適用社員値引き額,"セール販売時のみ設定
+適用した社員販売の値引き額"
+49,bargainId,INT,integer,,,True,True,セールID,"セール販売時のみ設定。適用したセールのID
+※セール商品ID(bargainProductId)の値が設定されます。(ver.3.1.0追記)"
+50,bargainName,VARCHAR,string,,,True,True,セール名称,"セール販売時のみ設定
+適用したセールの名称"
+51,bargainDivision,CHAR,integer,,,True,True,セール区分,"セール販売時のみ設定
+1:割引  2:値引  3:価格指定"
+52,bargainValue,DECIMAL,decimal,,,True,True,セール値,"セール販売時のみ設定
+割引、値引、価格指定の値"
+53,applyBargainValue,DECIMAL,decimal,,,True,True,適用セール値,"セール販売時のみ設定
+適用したセール販売の割引、値引き、価格指定の値"
+54,"applyBargainDiscountPr
+ice",DECIMAL,decimal,,,True,True,適用セール値引き額,"セール販売時のみ設定
+適用したセール販売の値引き額"
+55,taxRate,DECIMAL,decimal,,,True,True,適用税率,適用した税率（明細毎に税率変更可能な為）
+56,standardTaxRate,DECIMAL,decimal,,,True,True,標準税率,標準税率（明細毎に税率変更可能な為）
+57,modifiedTaxRate,DECIMAL,decimal,,,True,True,修正税率,修正した税率（明細毎に税率変更可能な為）
+58,color,VARCHAR,string,,,True,True,カラー,販売時のカラー
+59,size,VARCHAR,string,,,True,True,サイズ,販売時のサイズ

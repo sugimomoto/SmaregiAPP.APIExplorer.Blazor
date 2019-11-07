@@ -1,0 +1,32 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,categoryId,INT,integer,True,True,,True,部門ID  (PK),"同一の部門IDがテーブルに存在する場合、対象のデータを更新。
+数字9桁以内。部門IDは必ず設定してください。"
+2,categoryCode,VARCHAR,string,,,,True,部門コード,半角英数記号20文字以内。部門コード
+3,categoryName,VARCHAR,string,,True,,True,部門名,85文字以内。部門名
+4,categoryAbbr,VARCHAR,string,,,,True,部門名略称,85文字以内。部門名略称
+5,categoryGroupId,INT,integer,,,,True,部門グループ,"部門グループIDを設定してください。（ver.2.0.0で追加）
+存在しない部門グループIDを指定するとエラー。"
+6,parentCategoryId,INT,integer,,,,True,親部門,"親部門IDを設定してください。（ver.2.0.0で追加）
+存在しない親部門IDを指定するとエラー。
+3階層まで親部門を設定することができます。"
+7,level,TINYINT,integer,,,True,True,階層レベル,"階層レベルは自動で設定されます。
+階層レベルは1〜3になります。親部門が未設定の場合は1になります。"
+8,displaySequence,INT,integer,,,,True,表示順,数字9桁以内。表示順
+9,displayFlag,CHAR,boolean,,,,True,端末表示,"スマレジ端末に表示するか否かの判定。（ver.2.0.0で追加）
+未設定の場合1を設定。
+（0：表示しない、1：表示する）"
+10,pointNotApplicable,CHAR,boolean,,,,True,ポイント対象,"ポイント対象にするか否かの設定。未設定の場合0を設定。（ver.2.0.0で追加）
+（0:ポイント対象、1:ポイント対象外）"
+11,taxFreeDivision,CHAR,integer,,,,True,免税区分,"免税区分の設定。未設定の場合0を設定。（ver.2.1.0で追加）
+(0：対象外、1：一般品、2：消耗品)
+免税機能を利用しない場合は「対象外」としてください
+「対象外」免税対象ではない商品
+「一般品」電化製品、服、着物、カバンなど
+「消耗品」酒、食品類、薬品類、化粧品類など
+※部門の免税区分よりも、商品の免税区分を優先します。
+(部門売りで適用されます。)"
+12,color,VARCHAR,string,,,,True,端末表示カラー,"端末に表示するカラー  （HTMLカラーコード形式）（ver.2.1.0で追加）
+例)  #000000"
+13,tag,VARCHAR,string,,,,True,タグ,85文字以内。複数ある場合は、カンマで区切り。
+14,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+15,updDateTime,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

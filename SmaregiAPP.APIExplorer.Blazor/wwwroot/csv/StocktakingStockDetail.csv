@@ -1,0 +1,23 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,stocktakingInfoId,INT,integer,True,,,True,棚卸ID  (PK),棚卸毎に付与するID。
+2,stocktakingHeadId,INT,integer,True,,,True,棚卸ヘッダID  (PK),棚卸分割毎に付与するID。
+3,productId,BIGINT,string,True,,,True,商品ID  (PK),棚卸対象の商品IDを設定。
+4,productCode,VARCHAR,string,,,,True,商品コード,商品コード。（半角英数記号  20桁以内）
+5,productName,VARCHAR,string,,,,True,商品名,商品名。(85文字以内)
+6,size,VARCHAR,string,,,,True,サイズ,棚卸商品のサイズ。（参照時点の商品マスタの値）
+7,color,VARCHAR,string,,,,True,カラー,棚卸商品のカラー。（参照時点の商品マスタの値）
+8,groupCode,VARCHAR,string,,,,True,グループコード,棚卸商品のグループコード。（参照時点の商品マスタの値）
+9,supplierProductNo,VARCHAR,string,,,,True,品番,棚卸商品の品番。（参照時点の商品マスタの値）
+10,stockQuantity,INT,integer,,,,False,在庫数,"基準日時点の在庫数。
+※検索条件の指定不可"
+11,stockMoney,DECIMAL,decimal,,,,False,在庫金額,"基準日時点の在庫金額。
+※検索条件の指定不可"
+12,transportationQuantity,INT,integer,,,,False,積送在庫数,"基準日時点の積送在庫数。
+※検索条件の指定不可"
+13,transportationMoney,DECIMAL,decimal,,,,False,積送在庫金額,"基準日時点の積送在庫金額。
+※検索条件の指定不可"
+14,layawayQuantity,INT,integer,,,,False,取置在庫数,"基準日時点の取置在庫数。
+※検索条件の指定不可"
+15,layawayMoney,DECIMAL,decimal,,,,False,取置在庫金額,"基準日時点の取置在庫金額。
+※検索条件の指定不可"
+16,storeId,INT,integer,,,,True,店舗ID,棚卸を行った店舗ID。

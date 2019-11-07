@@ -1,0 +1,70 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,customerId,BIGINT,long,True,True,,True,会員ID  (PK),数字10桁以内。
+2,customerCode,VARCHAR,string,,True,,True,会員コード,半角英数記号20文字以内。ユニークキーとなる為重複不可。
+3,customerNo,VARCHAR,string,,,,True,会員番号,"半角英数記号20文字以内。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+4,rank,VARCHAR,string,,,,True,会員ランク,"汎用マスタの「会員ランク」で登録しているコードを設定してください。
+汎用マスタに登録されていないコードを設定するとエラーになります。"
+5,staffRank,VARCHAR,string,,,,True,社員ランク,"汎用マスタの「社員ランク」で登録しているコードを設定してください。
+汎用マスタに登録されていないコードを設定するとエラーになります。"
+6,lastName,VARCHAR,string,,True,,True,姓,85文字以内。
+7,firstName,VARCHAR,string,,True,,True,名,85文字以内。
+8,lastKana,VARCHAR,string,,,,True,姓カナ,"全角カナ85文字以内。（半角英数）
+※会員必須項目設定の設定内容が必須の場合、必須。"
+9,firstKana,VARCHAR,string,,,,True,名カナ,"全角カナ85文字以内。（半角英数）
+※会員必須項目設定の設定内容が必須の場合、必須。"
+10,postCode,VARCHAR,string,,,,True,郵便番号,"半角英数記号10文字以内。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+11,address,VARCHAR,string,,,,True,住所,"85文字以内     ハイフン付き。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+12,phoneNumber,VARCHAR,string,,,,True,電話番号,"半角数字記号20文字以内     ハイフン付き。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+13,faxNumber,VARCHAR,string,,,,True,FAX番号,"半角数字記号20文字以内     ハイフン付き。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+14,mobileNumber,VARCHAR,string,,,,True,携帯電話番号,"半角数字記号20文字以内     ハイフン付き。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+15,mailAddress,VARCHAR,string,,,,True,メールアドレス,"半角英数記号255文字以内。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+16,mailAddress2,VARCHAR,string,,,,True,メールアドレス2,半角英数記号255文字以内。
+17,mailAddress3,VARCHAR,string,,,,True,メールアドレス3,半角英数記号255文字以内。
+18,companyName,VARCHAR,string,,,,True,会社名,85文字以内。
+19,departmentName,VARCHAR,string,,,,True,部署名,85文字以内。
+20,managerialPosition,VARCHAR,string,,,,True,役職,85文字以内。
+21,sex,CHAR,integer,,True,,True,性別,数字1桁。（0：不明、1：男、2：女）
+22,birthDate,DATE,date,,,,True,生年月日,"YYYY-MM-DD形式。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+23,mile,DECIMAL,decimal,,,,True,マイル,9桁以内。(ver.2.3.0で追加)
+24,point,DECIMAL,decimal,,,,True,ポイント,9桁以内。
+25,pointExpireDate,DATE,date,,,,True,ポイント失効予定日,"ポイントが失効する日を設定。YYYY-MM-DD形式。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+26,lastComeDateTime,DATETIME,datetime,,,,True,最終来店日時,YYYY-MM-DD  HH:MM:SS形式。
+27,entryDate,DATE,date,,,,True,入会日,"YYYY-MM-DD形式。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+28,leaveDate,DATE,date,,,,True,退会日,YYYY-MM-DD形式。会員状態区分が利用可以外の場合、設定してください。
+29,pointGivingUnitPrice,INT,integer,,,,True,ポイント付与単位(金額),"ポイント付与の設定  n円をnポイントの「n円」の部分
+（設定範囲：1円〜99999円)
+（例：10円ごとに2ポイントの場合、10円）"
+30,pointGivingUnit,DECIMAL,decimal,,,,True,"ポイント付与単位(ポイン
+ト)","ポイント付与の設定  n円をnポイントの「nポイント」の部分
+（設定範囲：0.00ポイント〜99999.99ポイント)
+（例：10円ごとに0.2ポイントの場合、0.2ポイント）"
+31,pinCode,VARCHAR,string,,,,True,PINコード,"自由な文字列
+PINコードなど会員を識別する任意の文字列を設定してください。
+※会員必須項目設定の設定内容が必須の場合、必須。"
+32,passportNo,VARCHAR,string,,,,True,旅券番号,"パスポート番号。会員販売時、免税帳票の「旅券番号」に表示します。
+半角英数記号32桁"
+33,nationality,VARCHAR,string,,,,True,国籍,"国籍。会員販売時、免税帳票の「国籍」に表示します。
+85文字以内"
+34,alphabetName,VARCHAR,string,,,,True,アルファベット氏名,"アルファベット氏名。会員販売時、免税帳票の「購入者氏名」に表示します。
+85文字以内"
+35,mailReceiveFlag,BOOLEAN,boolean,,,,True,"案内メール受取許可フラ
+グ",数字1桁。（0：拒否、1：許可）未設定の場合0を設定。
+36,note,TEXT,string,,,,True,備考,"1,000文字以内。"
+37,note2,TEXT,string,,,,True,備考2,"1,000文字以内。"
+38,favoriteList,TEXT,string,,,,True,お気に入りリスト,"1,000文字以内。(スマレジAPIからのみ登録可能。商品コードをカンマ区切りで"
+39,browsingList,TEXT,string,,,,True,閲覧履歴リスト,"1,000文字以内。(スマレジAPIからのみ登録可能。商品コードをカンマ区切りで"
+40,status,CHAR,integer,,,,True,会員状態区分,"数字1桁。（0：利用可、1：利用停止、2：紛失、3：退会、4：名寄せ）
+未設定の場合0を設定。"
+41,storeId,INT,integer,,,,True,対象店舗ID,数字5桁以内。
+42,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+43,updDateTime,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

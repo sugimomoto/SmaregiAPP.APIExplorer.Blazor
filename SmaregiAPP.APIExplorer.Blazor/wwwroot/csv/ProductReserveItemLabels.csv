@@ -1,0 +1,3 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,no,INT,integer,True,True,,True,項目番号  (PK),1-99  の項目番号。
+2,label,VARCHAR,string,,True,,True,ラベル,85文字以内。予備項目の値。

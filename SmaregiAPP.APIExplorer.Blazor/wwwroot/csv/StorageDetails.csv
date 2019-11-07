@@ -1,0 +1,26 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageId,INT,integer,True,,,True,入荷ID,"入荷毎に付与するID。
+【自動更新】自動採番"
+2,productId,BIGINT,long,True,,,True,商品ID,"数字15桁以内。
+存在しない商品IDを指定するとエラー。
+同入荷内で、同じ商品IDを指定するとエラー。"
+3,productCode,VARCHAR,string,,,True,True,商品コード,入荷商品の商品コード。（参照時点の商品マスタの値）
+4,productName,VARCHAR,string,,,True,True,商品名,入荷商品の商品名。（参照時点の商品マスタの値）
+5,size,VARCHAR,string,,,True,True,サイズ,入荷商品のサイズ。（参照時点の商品マスタの値）
+6,color,VARCHAR,string,,,True,True,カラー,入荷商品のカラー。（参照時点の商品マスタの値）
+7,groupCode,VARCHAR,string,,,True,True,グループコード,入荷商品のグループコード。（参照時点の商品マスタの値）
+8,supplierProductNo,VARCHAR,string,,,True,True,品番,入荷商品の品番。（参照時点の商品マスタの値）
+9,cost,DECIMAL,decimal,,,,True,原単価(税抜),"商品の原価。(半角数字  整数部分8桁、少数部5桁  (小数点含む最大14桁))
+※設定時そのまま設定
+※省略時、商品マスタの原価を設定。"
+10,scheduledQuantity,INT,integer,,,,True,予定数,数字5桁以内。
+11,inspectionQuantity,INT,integer,,True,,True,検品数,数字5桁以内。
+12,stockoutQuantity,INT,integer,,,,True,欠品数,数字5桁以内。
+13,stockoutReason,TEXT,string,,,,True,欠品理由,1000文字以内。
+14,inspectionDate,DATE,date,,,True,True,検品日,"検品日を設定。(YYYY-MM-DD形式)
+入荷日を設定。"
+15,compulsoryCompleteFla,CHAR,string,,,True,True,強制完了,"予定数が検品数+欠品数にならない場合でも強制的に検品完了の状態にする場合
+設定。"
+16,status,CHAR,boolean,,,True,True,状態,"検品状況によって自動更新する。
+0：未検品、1：検品完了"
+17,modified,DATETIME,datetime,,,True,True,更新日時,入荷の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

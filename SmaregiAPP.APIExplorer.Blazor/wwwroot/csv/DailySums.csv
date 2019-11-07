@@ -1,0 +1,102 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,sumDate,DATE,date,True,,,True,締め日  (PK),締め日。YYYY-MM-DD形式
+2,storeId,INT,integer,True,,,True,店舗ID  (PK),数字9桁以内。
+3,cashDrawerId,INT,integer,True,,,True,"キャッシュドロアID
+(PK)","キャッシュドロアID。
+※未登録の場合、0が設定されます"
+4,status,CHAR,integer,,,,,ステータス,"締め処理の状況を表す区分。（2：処理済みのみ）
+※締め処理が行われていないデータは取得できません。
+（0:未処理、1:未処理(保存データあり)"
+5,salesTotal,DECIMAL,decimal,,,,,総売上,"総売上の合計
+基本設定の【総売上に「売上対象外商品」分を含める】が、0：考慮する（除
+く）に設定されている場合、総売上には売上対象外商品の金額は含まれません。
+設定内容については、総売上対象外区分を参照。（ver.2.7.0で追記）"
+6,discount,DECIMAL,decimal,,,,,値引き,値引き金額の合計
+7,pointDiscount,DECIMAL,decimal,,,,,ポイント利用,ポイント利用金額の合計
+8,taxExcludeReceive,DECIMAL,decimal,,,,,外税受領額,外税受領額の合計
+9,nonSalesTargetTotal,DECIMAL,decimal,,,,,売上対象外金額,売上対象外金額の合計
+10,total,DECIMAL,decimal,,,,,純売上,"純売上の合計
+基本設定の【純売上に免税額を含める】が、0：考慮する（除く）に設定されている場合、純売上には免税額の金額は含まれません。
+設定内容については、純売上免税区分を参照。（ver.2.7.0で追記）"
+11,totalExcludTax,DECIMAL,decimal,,,,,純売上(税抜),純売上(税抜)の合計
+12,inTaxSalesTotal,DECIMAL,decimal,,,,,内税対象額,内税対象外の合計
+13,taxInclude,DECIMAL,decimal,,,,,内税額,内税額の合計
+14,outTaxSalesTotal,DECIMAL,decimal,,,,,外税対象額,外税対象外の合計
+15,taxExclude,DECIMAL,decimal,,,,,外税額,外税額の合計
+16,taxTotal,DECIMAL,decimal,,,,,消費税合計,消費税合計
+17,nonTaxSalesTotal,DECIMAL,decimal,,,,,非課税対象額,非課税対象額の合計
+18,taxFreeTotal,DECIMAL,decimal,,,,,免税額,免税額の合計
+19,"nonSalesTargetTaxFree
+Total",DECIMAL,decimal,,,,,売上対象外免税額,売上対象外の免税額合計（ver.2.7.0で追加）
+20,costTotal,DECIMAL,decimal,,,,,売上原価,売上原価の合計
+21,grossMargin,DECIMAL,decimal,,,,,粗利益,粗利益の合計
+22,amount,INT,integer,,,,,販売商品点数,販売商品点数の合計
+23,transactionCount,INT,integer,,,,,通常取引数,通常取引の合計
+24,returnAmount,INT,integer,,,,,返品数,返品数の合計
+25,carriage,DECIMAL,decimal,,,,,送料,送料の合計
+26,commission,DECIMAL,decimal,,,,,手数料,手数料の合計
+27,preparationCash,DECIMAL,decimal,,,,,釣銭準備金,釣銭準備金
+28,cashSales,DECIMAL,decimal,,,,,現金売上,現金売上額
+29,creditSales,DECIMAL,decimal,,,,,クレジット売上,クレジット売上
+30,otherSalseList,array,string,,,,,その他売上,配列で返します。（その他支払方法が存在しない場合、空の配列を返します。）
+31,id,INT,integer,,,,,その他支払方法ID,その他支払方法ID
+32,name,VARCHAR,string,,,,,その他支払方法名,その他支払方法名
+33,"paymentMethodDivis
+ion",VARCHAR,string,,,,,"その他支払方法分
+類区分","汎用マスタのコードを設定する。(汎用区分：8  [支払方法分類])
+※未設定の場合、空文字"
+34,"paymentMethodDivis
+ionName",VARCHAR,string,,,,,"その他支払方法分
+類名",汎用マスタの名称を設定する。(汎用区分：8  [支払方法分類])
+35,sales,DECIMAL,decimal,,,,,その他支払方法金額,その他支払金額
+36,partPayment,DECIMAL,decimal,,,,,前受金,取置き時の前受金受領額
+37,partPaymentCash,DECIMAL,decimal,,,,,前受金(現金),取置き時の前受金受領額(現金)
+38,partPaymentCredit,DECIMAL,decimal,,,,,前受金(クレジット),取置き時の前受金受領額(クレジット)
+39,receivedDepositCash,DECIMAL,decimal,,,,,前受金(受領済金額),取置き時の前受金を売上として計上した金額
+40,"receivedDepositCashTot
+al",DECIMAL,decimal,,,,,"前受金(受領済金
+額)(現金)",取置き時の前受金を売上として計上した金額(現金)
+41,"receivedDepositCreditT
+otal",DECIMAL,decimal,,,,,"前受金(受領済金
+額)(クレジット)",取置き時の前受金を売上として計上した金額(クレジット)
+42,partPaymentCancel,DECIMAL,decimal,,,,,前受金(取消),取置き時の前受金をキャンセルした金額
+43,"partPaymentCashCance
+l",DECIMAL,decimal,,,,,前受金(取消)(現金),取置き時の前受金をキャンセルした金額(現金)
+44,"partPaymentCreditCanc
+el",DECIMAL,decimal,,,,,"前受金(取消)(クレ
+ジット)",取置き時の前受金をキャンセルした金額(クレジット)
+45,deposit,DECIMAL,decimal,,,,,預かり金,取引区分が(4：預かり金)  の合計額
+46,returnDeposit,DECIMAL,decimal,,,,,預かり金返金,取引区分が(5：預かり金返金)  の取引合計額
+47,receipt,DECIMAL,decimal,,,,,入金,取引区分が(2：入金)  の取引合計額
+48,payment,DECIMAL,decimal,,,,,出金,取引区分が(3：出金)  の取引合計額
+49,nonSalesCashTotal,DECIMAL,decimal,,,,,売上対象外現金,売上対象外の現金受領額
+50,nonSalesCreditTotal,DECIMAL,decimal,,,,,売上対象外クレジット,売上対象外のクレジット受領額
+51,nonSalesOtherTotal,DECIMAL,decimal,,,,,売上対象外その他,売上対象外のその他支払方法受領額
+52,nonSalesTaxFreeTotal,DECIMAL,decimal,,,,,売上対象外免税,売上対象外の免税額（ver.2.7.0で追加）
+53,changeDifference,DECIMAL,decimal,,,,,釣銭差額,釣銭差額（ver.2.7.0で追加）
+54,calculateBalance,DECIMAL,decimal,,,,,計算現金残高,"釣銭準備金  +  現金売上  +  前受金  -  前受金(取消)  +  預かり金  -  預かり金返金
++  入金  -  出金"
+55,realBalance,DECIMAL,decimal,,,,,実現金残高,1万円札から1円玉の枚数の合計金額
+56,difference,DECIMAL,decimal,,,,,現金過不足,現金過不足
+57,saving,DECIMAL,decimal,,,,,移行預入金,移行預入金
+58,carryOver,DECIMAL,decimal,,,,,繰越準備金,繰越準備金
+59,tenThousandYen,INT,integer,,,,,1万円札,締め時点の1万円札の枚数
+60,fiveThousandYen,INT,integer,,,,,5千円札,5千円札
+61,twoThousandYen,INT,integer,,,,,2千円札,2千円札
+62,oneThousandYen,INT,integer,,,,,千円札,千円札
+63,fiveHundredYen,INT,integer,,,,,500円玉,500円玉
+64,oneHundredYen,INT,integer,,,,,100円玉,100円玉
+65,fiftyYen,INT,integer,,,,,50円玉,50円玉
+66,tenYen,INT,integer,,,,,10円玉,10円玉
+67,fiveYen,INT,integer,,,,,5円玉,5円玉
+68,oneYen,INT,integer,,,,,1円玉,1円玉
+69,comment,TEXT,string,,,,,コメント,1000文字以内
+70,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+71,updDateTime,DATETIME,date,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+72,"salesTotalNonSalesTarg
+etDivision",CHAR,string,,,,,総売上対象外区分,"基本設定の【総売上に「売上対象外商品」分を含める】の設定内容
+（ver.2.7.0で追加）                                                                 (0：売上対象外を考慮する（除く）、1：売上対象外を考慮しない)
+※0：考慮する（除く）なら、総売上には売上対象外商品の金額が含まれていません。"
+73,totalTaxFreeDivision,CHAR,string,,,,,純売上免税区分,"基本設定の【純売上に免税額を含める】の設定内容（ver.2.7.0で追加）
+(0：免税額を考慮する（除く）、1：免税額を考慮しない)
+※0：考慮する（除く）なら、純売上には免税額の金額が含まれていません。"

@@ -1,0 +1,13 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,stocktakingInfoId,INT,integer,True,,,True,棚卸ID  (PK),棚卸毎に付与するID。
+2,storeId,INT,integer,,,,True,店舗ID,棚卸を行う店舗IDを設定。
+3,divisionUnit,CHAR,boolean,,,,True,分割単位,"分割単位を設定。
+0：分割なし、1：部門"
+4,targetDate,DATE,date,,,,True,対象年月,対象年月を指定。（日は1日固定）
+5,adjustmentDate,DATETIME,datetime,,,,True,調整日時,状態を「棚卸中」から「調整中」又は、「完了」に変更した日時を設定。
+6,"stocktakingCompleteDa
+te",DATETIME,datetime,,,,True,完了日時,状態を「完了」に変更した日時を設定。
+7,status,CHAR,integer,,,,True,状態,"棚卸状態を設定。
+0：棚卸中、1：調整中、2：完了"
+8,created,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+9,modified,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

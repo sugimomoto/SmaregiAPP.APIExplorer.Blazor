@@ -1,0 +1,19 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,storageInfoId,INT,integer,True,,,True,発注ID  (PK),"発注毎に付与するID。
+【自動更新】自動採番"
+2,productId,BIGINT,long,True,,,True,商品ID  (PK),"数字15桁以内。
+存在しない商品IDを指定するとエラー。
+同発注内で、同じ商品IDを指定するとエラー。"
+3,productCode,VARCHAR,string,,,True,True,商品コード,発注商品の商品コード。（参照時点の商品マスタの値）
+4,productName,VARCHAR,string,,,True,True,商品名,発注商品の商品名。（参照時点の商品マスタの値）
+5,size,VARCHAR,string,,,True,True,サイズ,発注商品のサイズ。（参照時点の商品マスタの値）
+6,color,VARCHAR,string,,,True,True,カラー,発注商品のカラー。（参照時点の商品マスタの値）
+7,groupCode,VARCHAR,string,,,True,True,グループコード,発注商品のグループコード。（参照時点の商品マスタの値）
+8,supplierProductNo,VARCHAR,string,,,True,True,品番,発注商品の品番。（参照時点の商品マスタの値）
+9,cost,DECIMAL,decimal,,,,True,原単価(税抜),"商品の原価。(半角数字  整数部分8桁、少数部5桁  (小数点含む最大14桁))
+※設定時そのまま設定
+※省略時、商品マスタの原価を設定。"
+10,quantity,INT,integer,,,True,True,発注数,"数字5桁以内。
+発注配送商品の入荷数の合計が設定されます。
+【自動更新】発注配送商品の合計を設定。"
+11,modified,DATETIME,datetime,,,True,True,更新日時,発注の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

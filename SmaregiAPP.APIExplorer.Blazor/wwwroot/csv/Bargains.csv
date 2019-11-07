@@ -1,0 +1,6 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,bargainId,INT,integer,True,True,,True,セールID  (PK),"同一のセールIDがテーブルに存在する場合、対象のデータを更新。
+数字9桁以内。セールIDは必ず設定してください。"
+2,bargainName,VARCHAR,string,,True,,True,セール名称,セール名称。
+3,termStart,DATE,date,,True,,True,適用開始日,セールの開始日。(YYYYｰMMｰDD形式)
+4,termEnd,DATE,date,,True,,True,適用終了日,セールの終了日。(YYYY-MM-DD形式)

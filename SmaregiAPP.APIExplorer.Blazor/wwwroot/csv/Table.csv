@@ -1,0 +1,40 @@
+﻿No,Document,Category Name JP,Category Name,Table Name JP,Table Name,CData TableName,Insert,Update,Delete,Reference,Send,Memo
+1,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,部門情報,Category Information,部門,Category,Categories,category_upd ,category_upd ,category_upd ,category_ref,category_send ,
+2,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,商品,Product,Products,product_upd ,product_upd ,product_upd ,product_ref,product_send,
+3,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,商品価格,ProductPrice,ProductPrices,product_upd ,product_upd ,product_upd ,product_ref,product_send,
+4,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,商品予備項目,ProductReserveItem,ProductReserveItems,product_upd ,product_upd ,product_upd ,product_ref,product_send,
+5,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,商品取扱店舗,ProductStore,ProductStores,product_upd ,product_upd ,Not Supported,product_ref,product_send,
+6,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,在庫引当商品,ProductInventoryReservation,ProductInventoryReservations,product_upd ,product_upd ,product_upd ,product_ref,product_send,
+7,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,商品情報,Product Information,商品予備項目ラベル,ProductReserveItemLabel,ProductReserveItemLabels,product_upd ,product_upd ,product_upd ,product_ref,product_send,
+8,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,会員情報,Customer Information,会員,Customer,Customers,customer_upd ,customer_upd ,customer_upd ,customer_ref,customer_send,
+9,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,在庫情報,Stock Information,在庫,Stock,Stocks,stock_upd ,stock_upd ,Not Supported, stock_ref ,stock_send,
+10,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,在庫情報,Stock Information,在庫履歴,StockHistory,StockHistories,Not Supported,Not Supported,Not Supported, stock_ref ,Not Supported,
+11,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,取引情報,Transaction Information,取引,TransactionHead,TransactionHeads,transaction_upd ,transaction_upd ,Not Supported,transaction_ref,transaction_send,
+12,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,取引情報,Transaction Information,取引明細,TransactionDetail,TransactionDetails,transaction_upd ,transaction_upd ,Not Supported,transaction_ref,transaction_send,
+13,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,セール情報,Bargain Information,セール,Bargain,Bargains,bargain_upd,bargain_upd,bargain_upd,bargain_ref,bargain_send,
+14,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,セール情報,Bargain Information,セール商品,BargainProduct,BargainProducts,bargain_upd,bargain_upd,bargain_upd,bargain_ref,bargain_send,
+15,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,セール情報,Bargain Information,セール店舗,BargainStore,BargainStores,bargain_upd,bargain_upd,bargain_upd,bargain_ref,bargain_send,
+16,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,会員ポイント情報,Point Information,会員ポイント,Point,Point,Not Supported,point_upd,point_upd,Not Supported,Not Supported,
+17,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,店舗情報,Store Information,店舗,Store,Stores,Not Supported,Not Supported,Not Supported,store_ref,Not Supported,
+18,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_8_0.pdf,日時締め情報,DailySum Information,日時締め,DailySum,DailySums,Not Supported,Not Supported,Not Supported,daily_sum_ref,Not Supported,
+21,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,ロス情報,Loss Information,ロス,Loss,Losses,loss_upd,loss_upd,loss_upd,loss_ref,loss_send,
+22,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,ロス情報,Loss Information,ロス明細,LossDetail,LossDetails,loss_upd,loss_upd,Not Supported,loss_ref,loss_send,
+23,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,出荷情報,Shipment Information,出荷,Shipment,Shipments,shipment_upd,shipment_upd,shipment_upd,shipment_ref,shipment_send,
+24,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,出荷情報,Shipment Information,出荷明細,ShipmentDetail,ShipmentDetails,shipment_upd,shipment_upd,Not Supported,shipment_ref,shipment_send,
+25,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,発注情報,Storage Information,発注,StorageInfo,StorageInfo,storage_info_upd,storage_info_upd,storage_info_upd,storage_ifno_ref,storage_ifno_send,
+26,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,発注情報,Storage Information,発注配送先,StorageInfoDelivery,StorageInfoDeliveries,storage_info_upd,storage_info_upd,Not Supported,storage_ifno_ref,storage_ifno_send,
+27,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,発注情報,Storage Information,発注商品,StorageInfoProduct,StorageInfoProducts,storage_info_upd,storage_info_upd,Not Supported,storage_ifno_ref,storage_ifno_send,
+28,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,発注情報,Storage Information,発注配送商品,StorageInfoDeliveryProduct,StorageInfoDeliveryProducts,storage_info_upd,storage_info_upd,Not Supported,storage_ifno_ref,storage_ifno_send,
+29,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,入荷情報,Storage Information,入荷,Storage,Storages,storage_upd,storage_inspect_upd,storage_inspect_upd,storage_ref,storage_send,入荷検品も含める
+30,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,入荷情報,Storage Information,入荷明細,StorageDetail,StorageDetails,storage_upd,storage_inspect_upd,storage_inspect_upd,storage_ref,storage_send,入荷検品も含める
+33,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,出庫情報,Shipping Information,発注,Shipping,Shippings,shipping_upd,shipping_upd,shipping_upd,shipping_ref,shipping_send,
+34,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,出庫情報,Shipping Information,出庫明細,ShippingDetail,ShippingDetails,shipping_upd,shipping_upd,Not Supported,shipping_ref,shipping_send,
+35,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,入庫検品,Receiving,発注,Receiving,Receivings,receiving_upd,receiving_upd,Not Supported,receiving_ref,receiving_send,本当に登録できるかどうか気になる。
+36,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,入庫検品,Receiving,入庫明細,ReceivingDetail,ReceivingDetails,receiving_upd,receiving_upd,Not Supported,receiving_ref,receiving_send,本当に登録できるかどうか気になる。
+37,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸情報,Stocktaking Information,棚卸情報,StocktakingInfo,StocktakingInfo,Not Supported,Not Supported,Not Supported,stoctaking_ref,Not Supported,
+38,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸情報,Stocktaking Information,棚卸ヘッダ,StocktakingHead,StocktakingHeads,Not Supported,Not Supported,Not Supported,stoctaking_ref,Not Supported,
+39,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸情報,Stocktaking Information,棚卸明細,StocktakingDetail,StocktakingDetails,Not Supported,Not Supported,Not Supported,stoctaking_ref,Not Supported,
+40,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸在庫情報,Stoktaking Stock Information,棚卸情報,StocktakingInfo,StocktakingStockInfo,Not Supported,Not Supported,Not Supported,stocktaking_stock_ref,Not Supported,存在しない
+41,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸在庫情報,Stoktaking Stock Information,棚卸ヘッダ,StocktakingHead,StocktakingStockHead,Not Supported,Not Supported,Not Supported,stocktaking_stock_ref,Not Supported,存在しない
+42,APISpecDocument_Stock_外部インターフェース仕様書(在庫)_ver_1_4_0.pdf,棚卸在庫情報,Stoktaking Stock Information,棚卸明細,StocktakingDetail,StocktakingStockDetails,Not Supported,Not Supported,Not Supported,stocktaking_stock_ref,Not Supported,取得する場合、条件が必須。No39と統合する。
+43,API Spec_POS_外部インターフェース仕様書(POS)_ver_3_11_0.pdf,商品画像情報,Product Image Information,商品画像,ProductImage,ProductImage,Not Supported,product_image_upd,Not Supported,Not Supported,Not Supported,本開発ではスコープ外とする。顧客要望と相談。おそらくストアドプロシージャでの実装になる。

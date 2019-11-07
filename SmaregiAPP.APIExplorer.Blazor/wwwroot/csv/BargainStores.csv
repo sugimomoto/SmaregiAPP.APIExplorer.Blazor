@@ -1,0 +1,6 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,bargainStoreId,BIGINT,long,True,True,,True,セール店舗ID  (PK),"同一の商品IDがテーブルに存在する場合、対象のデータを更新。
+数字15桁以内。更新時、セール商品IDが未設定の場合自動採番します。"
+2,bargainId,INT,integer,,True,,True,セールID,セールID。数字9桁以内。存在しないセールIDを指定するとエラー。
+3,storeId,INT,integer,,True,,True,店舗ID,"店舗ID。数字9桁以内。存在しない店舗IDを指定するとエラー。
+※倉庫の店舗IDを指定するとエラー（ver.2.7.0で追加）"

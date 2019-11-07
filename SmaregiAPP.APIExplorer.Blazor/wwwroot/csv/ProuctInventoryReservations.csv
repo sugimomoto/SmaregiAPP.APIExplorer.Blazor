@@ -1,0 +1,4 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,productId,BIGINT,long,True,True,,True,商品ID  (PK),数字15桁以内。商品IDは必ず設定してください。
+2,reservationProductId,BIGINT,long,True,True,,True,引当商品商品ID  (PK),数字15桁以内。引当商品商品IDは必ず設定してください。
+3,reservationAmount,INT,integer,,True,,True,引当数,数字3桁以内。引当数は必ず1以上で設定して下さい。

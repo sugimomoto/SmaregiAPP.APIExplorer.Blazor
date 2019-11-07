@@ -1,0 +1,4 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,productId,BIGINT,long,True,True,,True,商品ID  (PK),数字15桁以内。商品IDは必ず設定してください。
+2,storeId,INT,integer,True,True,,True,店舗ID  (PK),数字9桁以内。
+3,assignDivision,CHAR,boolean,,True,,True,取扱区分,0:販売する／1:販売しない

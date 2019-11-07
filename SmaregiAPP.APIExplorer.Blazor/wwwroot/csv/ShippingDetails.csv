@@ -1,0 +1,16 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,shippingId,INT,integer,True,,,True,出庫ID  (PK),"出庫毎に付与するID。
+【自動更新】自動採番"
+2,productId,INT,integer,True,,,True,商品ID  (PK),"数字15桁以内。
+同出庫内で、同じ配送店舗IDを指定するとエラー。"
+3,productCode,VARCHAR,string,,,,True,商品コード,出庫商品の商品コード。（参照時点の商品マスタの値）
+4,productName,VARCHAR,string,,,,True,商品名,出庫商品の商品名。（参照時点の商品マスタの値）
+5,size,VARCHAR,string,,,,True,サイズ,出庫商品のサイズ。（参照時点の商品マスタの値）
+6,color,VARCHAR,string,,,,True,カラー,出庫商品のカラー。（参照時点の商品マスタの値）
+7,groupCode,VARCHAR,string,,,,True,グループコード,出庫商品のグループコード。（参照時点の商品マスタの値）
+8,supplierProductNo,VARCHAR,string,,,,True,品番,出庫商品の品番。（参照時点の商品マスタの値）
+9,requestQuantity,INT,integer,,,,True,出庫依頼数,"数字5桁以内。
+状況が未出庫の場合必須。"
+10,quantity,INT,integer,,,,True,出庫数,"数字5桁以内。
+状況が未入庫、入庫検品中の場合必須。"
+11,modified,DATETIME,datetime,,,True,True,更新日時,出庫の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)

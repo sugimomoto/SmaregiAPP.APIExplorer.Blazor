@@ -1,0 +1,21 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,stocktakingInfoId,INT,integer,True,,,True,棚卸ID  (PK),棚卸毎に付与するID。
+2,stocktakingHeadId,INT,integer,True,,,True,棚卸ヘッダID  (PK),棚卸分割毎に付与するID。
+3,productId,BIGINT,string,True,,,True,商品ID  (PK),棚卸対象の商品IDを設定。
+4,productCode,VARCHAR,string,,,,True,商品コード,棚卸商品の商品コード。（参照時点の商品マスタの値）
+5,productName,VARCHAR,string,,,,True,商品名,棚卸商品の商品名。（参照時点の商品マスタの値）
+6,size,VARCHAR,string,,,,True,サイズ,棚卸商品のサイズ。（参照時点の商品マスタの値）
+7,color,VARCHAR,string,,,,True,カラー,棚卸商品のカラー。（参照時点の商品マスタの値）
+8,groupCode,VARCHAR,string,,,,True,グループコード,棚卸商品のグループコード。（参照時点の商品マスタの値）
+9,supplierProductNo,VARCHAR,string,,,,True,品番,棚卸商品の品番。（参照時点の商品マスタの値）
+10,stocktakingQuantity,INT,integer,,,,True,実地棚卸数,棚卸で計測された在庫数。
+11,"transportationStockQua
+ntity",INT,integer,,,,True,積送在庫数,棚卸調整時点の積送在庫数。
+12,layawayStockQuantity,INT,integer,,,,True,取置在庫数,棚卸調整時点の取置在庫数。
+13,"stockQuantityBeforeAdj
+ustment",INT,integer,,,,True,在庫数,棚卸調整時点の在庫数。
+14,cost,DECIMAL,decimal,,,,True,原価,"状況が「調整中」「完了」の場合、棚卸調整時点の商品マスタの原価。
+状況が「棚卸中」の場合、商品マスタの原価。"
+15,memo,TEXT,string,,,,True,メモ,メモを設定。
+16,modified,DATETIME,datetime,,,,True,更新日時,"棚卸情報の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)
+（棚卸情報テーブルと同じ値）"

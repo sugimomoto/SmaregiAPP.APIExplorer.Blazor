@@ -1,0 +1,12 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,productId,BIGINT,long,True,True,,True,商品ID  (PK),"同一の商品IDがテーブルに存在する場合、対象のデータを更新。
+数字15桁以内。商品IDは必ず設定してください。"
+2,storeId,INT,integer,True,True,,True,店舗ID  (PK),数字9桁以内。全店の場合「_ALL_」を設定(内部で-1に置換える)
+3,priceDivision,CHAR,integer,True,True,,True,価格区分  (PK),1：商品単価、2：会員価格
+4,startDate,DATE,date,True,,,True,適用開始日  (PK),"適用開始日     （YYYY-MM-DD形式）
+※適用期間が重複する場合は、適用開始日が新しい日を優先します。"
+5,endDate,DATE,date,,,,True,適用終了日,"適用終了日     （YYYY-MM-DD形式）
+※未設定の場合、有効期限なしとして適用されます。"
+6,price,DECIMAL,decimal,,,,True,商品単価,商品単価     数字8桁以内
+7,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+8,updDateTime,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

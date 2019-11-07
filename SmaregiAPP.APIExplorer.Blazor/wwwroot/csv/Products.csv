@@ -1,0 +1,54 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,productId,BIGINT,long,True,True,,True,商品ID  (PK),"同一の商品IDがテーブルに存在する場合、対象のデータを更新。
+数字15桁以内。商品IDは必ず設定してください。"
+2,categoryId,INT,integer,,True,,True,部門ID,部門ID。数字9桁以内。存在しない部門IDを指定するとエラー。
+3,productCode,VARCHAR,string,,,,True,商品コード,"半角英数記号20文字以内。重複する場合エラー。
+商品コード未設定で商品登録を行う場合、商品コード自動採番ONの設定になっ
+ていると自動採番された商品コードで登録。"
+4,productName,VARCHAR,string,,True,,True,商品名,85文字以内。
+5,productKana,VARCHAR,string,,,,True,商品カナ,全角カナ85文字以内。
+6,taxDivision,CHAR,integer,,,,True,税区分,"商品価格の消費税の扱いに関する設定。未設定の場合0を設定。
+（0:内税、1:外税、2:非課税）"
+7,productPriceDivision,CHAR,integer,,,,True,商品価格区分,"商品をオープン価格販売するかどうか設定。未設定の場合1を設定。
+（1:通常価格、2:オープン価格）（ver.2.10.0で追加）"
+8,price,DECIMAL,decimal,,,,True,商品単価,数字8桁以内。販売価格を設定。
+9,customerPrice,DECIMAL,decimal,,,,True,会員価格,数字8桁以内。会員価格を設定。
+10,cost,DECIMAL,decimal,,,,True,原価,数字8桁以内(少数5桁まで)。未設定の場合0を設定。
+11,attribute,TEXT,string,,,,True,規格,1000文字以内。商品のカラー・サイズなどを設定。
+12,description,TEXT,string,,,,True,説明,1000文字以内。商品説明などを設定。
+13,catchCopy,TEXT,string,,,,True,キャッチコピー,1000文字以内。商品のキャッチコピーなどを設定。
+14,size,VARCHAR,string,,,,True,サイズ,85文字以内。
+15,color,VARCHAR,string,,,,True,カラー,85文字以内。
+16,tag,VARCHAR,string,,,,True,タグ,85文字以内。複数ある場合は、カンマで区切り。
+17,groupCode,VARCHAR,string,,,,True,グループコード,"関連商品として紐付ける為のグループコードを設定。
+例えば、AとBの商品に同じグループコード001を設定すると、AとBは関連商品
+となります。サイズ、カラーが異なる場合などに使用してください。"
+18,url,VARCHAR,string,,,,True,URL,"255文字以内。
+スマレジ端末でWEBページを表示したい場合設定。"
+19,displaySequence,INT,integer,,,,True,表示順,数字9桁以内。表示順
+20,salesDivision,CHAR,boolean,,,,True,売上区分,"取引時に売上計上するか否かの設定。未設定の場合0を設定。
+（0:売上対象、1:売上対象外）"
+21,stockControlDivision,CHAR,boolean,,,,True,在庫管理区分,"棚卸対象商品とするか否かの設定。未設定の場合0を設定。
+（0:在庫管理対象、1:在庫管理対象外）"
+22,displayFlag,CHAR,boolean,,,,True,表示フラグ,"スマレジ端末に表示するか否かの判定。未設定の場合1を設定。
+（0：表示しない、1：表示する）"
+23,division,CHAR,integer,,,,True,商品区分,"商品の種類を設定。未設定の場合0を設定。
+（0：通常商品、1：回数券(*1)、2：オプション商品）"
+24,productOptionGroupId,INT,integer,,,,True,オプショングループID,使用するオプショングループのIDを設定。未設定の場合は未使用。
+25,pointNotApplicable,CHAR,boolean,,,,True,ポイント対象,"ポイント対象にするか否かの設定。未設定の場合0を設定。
+（0:ポイント対象、1:ポイント対象外）（ver.2.0.0で追加）"
+26,taxFreeDivision,CHAR,integer,,,,True,免税区分,"免税区分の設定。未設定の場合0を設定。（ver.2.1.0で追加）
+(0：対象外、1：一般品、2：消耗品)
+免税機能を利用しない場合は「対象外」としてください
+「対象外」免税対象ではない商品
+「一般品」電化製品、服、着物、カバンなど
+「消耗品」酒、食品類、薬品類、化粧品類など
+※部門の免税区分よりも、商品の免税区分を優先します。
+(部門売りで適用されます。)"
+27,supplierProductNo,CHAR,integer,,,,True,品番,85文字以内。
+28,staffDiscountRate,INT,integer,,,,True,社員販売割引率,数字3桁以内。社員販売時の割引率を設定。
+29,appStartDateTime,DATETIME,datetime,,,,True,適用開始日時,"商品が端末に適用される日時を設定。
+未設定の場合は未使用。（ver.2.7.0で追加）
+(YYYY-MM-DD  HH:MM:SS形式)"
+30,insDateTime,DATETIME,datetime,,,,True,作成日時,登録時の日時。  (YYYY-MM-DD  HH:MM:SS形式)
+31,updDateTime,DATETIME,datetime,,,,True,更新日時,登録時・更新時の日時。  (YYYY-MM-DD  HH:MM:SS形式)

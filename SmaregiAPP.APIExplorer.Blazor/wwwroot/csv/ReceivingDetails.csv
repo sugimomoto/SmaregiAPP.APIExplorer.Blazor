@@ -1,0 +1,20 @@
+﻿No,Name,SumareziType,Type,Key,Required,Readonly,Filterable,Japanese Label,Desc
+1,receivingId,INT,integer,True,True,,True,入庫ID,入庫毎に付与するID。
+2,productId,BIGINT,string,True,True,,True,商品ID,"数字15桁以内。
+存在しない商品IDを指定するとエラー。
+同ロス内で、同じ商品IDを指定するとエラー。"
+3,productCode,VARCHAR,string,,,,True,商品コード,入庫商品の商品コード。（参照時点の商品マスタの値）
+4,productName,VARCHAR,string,,,,True,商品名,入庫商品の商品名。（参照時点の商品マスタの値）
+5,size,VARCHAR,string,,,,True,サイズ,入庫商品のサイズ。（参照時点の商品マスタの値）
+6,color,VARCHAR,string,,,,True,カラー,入庫商品のカラー。（参照時点の商品マスタの値）
+7,groupCode,VARCHAR,string,,,,True,グループコード,入庫商品のグループコード。（参照時点の商品マスタの値）
+8,supplierProductNo,VARCHAR,string,,,,True,品番,入庫商品の品番。（参照時点の商品マスタの値）
+9,scheduledQuantity,INT,integer,,,,True,予定数,数字5桁以内。
+10,inspectionQuantity,INT,integer,,True,,True,検品数,数字5桁以内。
+11,stockoutQuantity,INT,integer,,True,,True,欠品数,数字5桁以内。
+12,stockoutReason,TEXT,string,,,,True,欠品理由,1000文字以内。
+13,inspectionDate,DATE,date,,,,True,検品日,"検品日を設定。(YYYY-MM-DD形式)
+指定しない場合、更新日を設定。"
+14,status,CHAR,boolean,,,,True,状態,"検品状況によって自動更新する。
+0：未検品、1：検品完了"
+15,modified,DATETIME,datetime,,,True,True,更新日時,入庫の更新日時。  (YYYY-MM-DD  HH:MM:SS形式)
