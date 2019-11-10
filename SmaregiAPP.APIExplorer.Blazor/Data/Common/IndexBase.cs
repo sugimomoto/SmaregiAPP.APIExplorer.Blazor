@@ -57,7 +57,7 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         /// </summary>
         protected override void OnInitialized()
         {
-            using (var reader = new StreamReader(@"C:\Users\sugim\source\repos\SmaregiAPP.APIExplorer.Blazor\SmaregiAPP.APIExplorer.Blazor\wwwroot\csv\Table.csv"))
+            using (var reader = new StreamReader(Directory.GetCurrentDirectory() + @"\wwwroot\csv\Table.csv"))
             using (var csv = new CsvReader(reader))
             {
                 csv.Configuration.HasHeaderRecord = true;
@@ -72,7 +72,7 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         public async void ChangeColumnList(ChangeEventArgs e)
         {
             tableName = e.Value.ToString();
-            var filePath = @"C:\Users\sugim\source\repos\SmaregiAPP.APIExplorer.Blazor\SmaregiAPP.APIExplorer.Blazor\wwwroot\csv\" + tableName + ".csv";
+            var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + tableName + ".csv";
 
             columnInput.Clear();
 
