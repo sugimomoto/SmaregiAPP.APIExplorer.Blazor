@@ -66,21 +66,35 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         }
 
         /// <summary>
-        /// 選択されたテーブル名を元に、カラム一覧をCSVから取得して、表示
+        /// 選択されたテーブル名を元に、カラム一覧をCSVから取得して、リスト表示
         /// </summary>
         /// <param name="e"></param>
         public async void ChangeColumnList(ChangeEventArgs e)
         {
-            tableName = e.Value.ToString();
-            var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + tableName + ".csv";
-
+            this.AlertMessage = "";
+            
+            var targetTable = tables.FirstOrDefault(x => x.CDataTableName == e.Value.ToString());
+            var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + targetTable.CDataTableName + ".csv";
             columnInput.Clear();
+
+            if (targetTable == null)
+            {
+                this.AlertMessage = $"Please select table name.";
+                return;
+            }
+
+            if(!targetTable.IsReferenceSupported)
+            {
+                this.AlertMessage = $"{targetTable.CDataTableName} table is not support Reference functions.";
+                return;
+            }
 
             if (!File.Exists(filePath))
             {
-                this.AlertMessage = $"{tableName} file is not exists.";
+                this.AlertMessage = $"{targetTable.CDataTableName} file is not exists.";
                 return;
             }
+
             try
             {
                 using (var reader = new StreamReader(filePath))
@@ -178,11 +192,14 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
 
         public async void SetColumnInput()
         {
-            columnInput = await JSRuntime.InvokeAsync<List<ColumnInput>>("tableDataManager.getTableValues");
+            // columnInput = await JSRuntime.InvokeAsync<List<ColumnInput>>("tableDataManager.getTableValues");
         }
 
         public async void Send()
         {
+            if (String.IsNullOrEmpty(RequestBody))
+                return;
+            
             var requestMessage = new HttpRequestMessage()
             {
                 Method = new HttpMethod("POST"),
@@ -196,7 +213,10 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
 
             var response = await Http.SendAsync(requestMessage);
             var responseStatusCode = response.StatusCode;
-            Response = await response.Content.ReadAsStringAsync();
+            var  jsonData = await response.Content.ReadAsStringAsync();
+
+            var jsonObject = JsonConvert.DeserializeObject(jsonData);
+            Response = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
 
             this.StateHasChanged();
 

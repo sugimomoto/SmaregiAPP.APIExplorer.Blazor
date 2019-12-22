@@ -46,5 +46,39 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Resource
 
         [Name("Memo")]
         public string Memo { get; set; }
+
+        [Ignore]
+        public bool IsReferenceSupported { 
+            get {
+                return this.ReferenceProcName != "Not Supported";
+            }
+        }
+
+        [Ignore]
+        public bool IsInsertSupported
+        {
+            get
+            {
+                return this.InsertProcName != "Not Supported";
+            }
+        }
+
+        [Ignore]
+        public bool IsUpdateSupported
+        {
+            get
+            {
+                return this.UpdateProcName != "Not Supported";
+            }
+        }
+
+        [Ignore]
+        public bool IsDeleteSupported
+        {
+            get
+            {
+                return this.DeleteProcName != "Not Supported";
+            }
+        }
     }
 }
