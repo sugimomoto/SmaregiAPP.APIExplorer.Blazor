@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\higlight\" />
     <Folder Include="wwwroot\css\honoka\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
