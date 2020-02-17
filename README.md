@@ -4,6 +4,10 @@ Smaregi API Explorer はスマレジ API のリクエストを簡単に組み立
 
 現在データの取得リクエストのみに対応しています。データの登録・更新リクエストには今後対応予定です。 Descriptionなどは公式のAPI Referenceを元に作っているので、全部が反映されているわけではないです。
 
+# Web Site
+
+[Smaregi API Explorer](https://smaregiapiexplorer.azurewebsites.net/)
+
 # API Basic
 
 基本的なAPIの使い方はこちらの記事が参考になります。
@@ -41,6 +45,12 @@ Postmanや任意のプログラムで使用してください。
 ## STEP4. ContractIdとAccessTokenを指定することで、実際にSmaregi APIにアクセスできます。
 
 もし、ContactIdとAccessTokenを持っている場合は、それぞれの項目に入力することで、簡易的に生成されたリクエストデータを試すことが可能です。
+
+# 技術スタック
+
+[ASP.NET Core C# Server side Blazor （.NET Core 3.0）](https://docs.microsoft.com/ja-jp/aspnet/core/blazor/?view=aspnetcore-3.1)
+
+[Azure Web Apps](https://azure.microsoft.com/ja-jp/services/app-service/web/)
 
 # 関連プロダクト
 
