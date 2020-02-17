@@ -14,6 +14,6 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
 
         private int conditionTypeValue { get; set; }
 
-        public readonly string[] conditionPattern = { "", "=", "like", "<", "<=", ">", ">=" };
+        public readonly string[] conditionPattern = { "", "", "like", "<", "<=", ">", ">=" };
     }
 }

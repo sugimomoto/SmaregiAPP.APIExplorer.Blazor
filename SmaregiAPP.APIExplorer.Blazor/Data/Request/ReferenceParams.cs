@@ -5,7 +5,7 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Request
 {
     public class ReferenceParams
     {
-        [JsonProperty("fileds")]
+        [JsonProperty("fields")]
         public string[] Fileds { get; set; }
 
         [JsonProperty("conditions")]

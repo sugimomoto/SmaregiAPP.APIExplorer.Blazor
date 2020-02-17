@@ -121,9 +121,9 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
             {
                 var dict = new Dictionary<string, string>();
 
-                if (!string.IsNullOrEmpty(item.ConditionType))
+                if (!string.IsNullOrEmpty(item.ConditionValue))
                 {
-                    dict.Add(item.Name + " " + item.ConditionType, item.ConditionValue);
+                    dict.Add(item.Name + (string.IsNullOrEmpty(item.ConditionType) ? item.ConditionType : " " + item.ConditionType), item.ConditionValue);
                     condtions.Add(dict);
                 }
             }
