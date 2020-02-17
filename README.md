@@ -6,6 +6,8 @@ Smaregi API Explorer はスマレジ API のリクエストを簡単に組み立
 
 # How to use
 
+![howtouse](https://github.com/sugimomoto/SmaregiAPP.APIExplorer.Blazor/blob/master/SmaregiAPP.APIExplorer.Blazor/wwwroot/img/smaregi.gif?raw=true)
+
 ## STEP1. テーブルを選択してください。
 
 対象テーブルを選択すると、取得できるカラムの一覧が表示されます。
