@@ -18,9 +18,6 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
     public class IndexBase : ComponentBase
     {
         [Inject]
-        private IJSRuntime JSRuntime { get; set; }
-
-        [Inject]
         private HttpClient Http { get; set; }
 
         public string AlertMessage { get; set; }
@@ -28,7 +25,6 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         public List<Table> tables = new List<Table>();
 
         public TableInput tableInput = new TableInput();
-
 
         public string RequestBody { get; set; }
 
@@ -59,32 +55,33 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         public void ChangeColumnList(ChangeEventArgs e)
         {
             this.AlertMessage = "";
-            
-            var targetTable = tables.FirstOrDefault(x => x.CDataTableName == e.Value.ToString());
-            var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + targetTable.CDataTableName + ".csv";
             tableInput.columnInput.Clear();
             tableInput.tableName = "";
 
-            if (targetTable == null)
-            {
-                this.AlertMessage = $"Please select table name.";
-                return;
-            }
-
-            if(!targetTable.IsReferenceSupported)
-            {
-                this.AlertMessage = $"{targetTable.CDataTableName} table is not support Reference functions.";
-                return;
-            }
-
-            if (!File.Exists(filePath))
-            {
-                this.AlertMessage = $"{targetTable.CDataTableName} file is not exists.";
-                return;
-            }
-
             try
             {
+                var targetTable = tables.FirstOrDefault(x => x.CDataTableName == e.Value.ToString());
+
+                if (targetTable == null)
+                {
+                    this.AlertMessage = $"Please select table name.";
+                    return;
+                }
+
+                if(!targetTable.IsReferenceSupported)
+                {
+                    this.AlertMessage = $"{targetTable.CDataTableName} table is not support Reference functions.";
+                    return;
+                }
+
+                var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + targetTable.CDataTableName + ".csv";
+
+                if (!File.Exists(filePath))
+                {
+                    this.AlertMessage = $"{targetTable.CDataTableName} file is not exists.";
+                    return;
+                }
+
                 using (var reader = new StreamReader(filePath))
                 using (var csv = new CsvReader(reader))
                 {
