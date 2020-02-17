@@ -49,10 +49,9 @@
             <BSFormGroup>
 
                 <BSFormGroup Class="text-right">
-                    <BSButton Color="Color.Info" OnClick="@(async () => await JSRuntime.InvokeVoidAsync("tableDataManager.setAllChecked", true))">All Check</BSButton>
-                    <BSButton Color="Color.Info" OnClick="@(async () => await JSRuntime.InvokeVoidAsync("tableDataManager.setAllChecked", false))">All Clear</BSButton>
+                    <BSButton Color="Color.Info" OnClick="@SetAllCheck">All Check</BSButton>
+                    <BSButton Color="Color.Info" OnClick="@SetAllClear">All Clear</BSButton>
                 </BSFormGroup>
-
 
                 <BSTable IsSmall="true" IsBordered="true" IsStriped="true" Class="overflow-auto" style="max-height: 200px;">
                     <BSTableHead>
@@ -68,33 +67,36 @@
                         </BSTableRow>
                     </BSTableHead>
                     <BSTableBody>
-                        @foreach (var column in columnInput)
+                        @foreach (var column in tableInput.columnInput)
                             {
                         <BSTableRow>
                             <BSTableCell>
-                                <BSBasicInput Class="form-control-sm" InputType="InputType.Checkbox" Value="@column.Select"></BSBasicInput>
+
+                                <BSBasicInput Class="form-control-sm" InputType="InputType.Checkbox" @bind-Value="column.Select" ></BSBasicInput>
                             </BSTableCell>
                             <BSTableCell>@column.No</BSTableCell>
                             <BSTableCell>@column.Name</BSTableCell>
                             <BSTableCell>@column.JapaneseLabel</BSTableCell>
                             <BSTableCell>@column.Type</BSTableCell>
                             <BSTableCell>
-                                <BSBasicInput Class="form-control-sm" InputType="InputType.Select" Value="@column.ConditionType"  @onselect="@SetColumnInput">
-                                    <option></option>
-                                    <option>=</option>
-                                    <option>like</option>
-                                    <option>&lt;</option>
-                                    <option>&lt;=</option>
-                                    <option>&gt;</option>
-                                    <option>&gt;=</option>
-                                </BSBasicInput>
+
+                                <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => column.ConditionType = e.Value.ToString())">
+                                    <option value="1"></option>
+                                    <option value="2">=</option>
+                                    <option value="3">like</option>
+                                    <option value="4">&lt;</option>
+                                    <option value="5">&lt;=</option>
+                                    <option value="6">&gt;</option>
+                                    <option value="7">&gt;=</option>
+                                </select>
+
                             </BSTableCell>
-                            <BSTableCell><BSBasicInput Class="form-control-sm" InputType="InputType.Text" Value="@column.ConditionValue" @onchange="@SetColumnInput"></BSBasicInput></BSTableCell>
+                            <BSTableCell><BSBasicInput Class="form-control-sm" InputType="InputType.Text" @bind-Value="column.ConditionValue" ></BSBasicInput></BSTableCell>
                             <BSTableCell>@column.Description</BSTableCell>
                         </BSTableRow>
                             }
 
-                        @if (columnInput.Count == 0)
+                        @if (tableInput.columnInput.Count == 0)
                             {
                         <tr>
                             <td colspan="8">No Records</td>
@@ -109,17 +111,16 @@
             <BSFormGroup IsRow="true">
                 <BSLabel For="OrderByLable1" SM="2">Order BY 1</BSLabel>
                 <BSCol>
-                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByColumn1 = e.Value.ToString())">
+                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => tableInput.OrderByColumn1 = e.Value.ToString())">
                         <option id="0" value="none"></option>
-                        @foreach (var column in columnInput)
+                        @foreach (var column in tableInput.columnInput)
                             {
-                        <option id="@column.No" value="@column.Name">@column.Name : @column.JapaneseLabel</option>
+                                <option id="@column.No" value="@column.Name">@column.Name : @column.JapaneseLabel</option>
                             }
-
                     </select>
                 </BSCol>
                 <BSCol>
-                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByType1 = e.Value.ToString())">
+                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => tableInput.OrderByType1 = e.Value.ToString())">
                         <option>ASC</option>
                         <option>DESC</option>
                     </select>
@@ -130,16 +131,16 @@
             <BSFormGroup IsRow="true">
                 <BSLabel For="OrderByLable2" SM="2">Order BY 2</BSLabel>
                 <BSCol>
-                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByColumn2 = e.Value.ToString())">
+                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => tableInput.OrderByColumn2 = e.Value.ToString())">
                         <option id="0" value="none"></option>
-                        @foreach (var column in columnInput)
+                        @foreach (var column in tableInput.columnInput)
                             {
                         <option id="@column.No" value="@column.Name">@column.Name : @column.JapaneseLabel</option>
                             }
                     </select>
                 </BSCol>
                 <BSCol>
-                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => OrderByType2 = e.Value.ToString())">
+                    <select class="form-control-sm" @onchange="@((ChangeEventArgs e) => tableInput.OrderByType2 = e.Value.ToString())">
                         <option>ASC</option>
                         <option>DESC</option>
                     </select>
@@ -149,11 +150,11 @@
             <BSFormGroup IsRow="true">
                 <BSLabel For="PageLable" SM="2">Page</BSLabel>
                 <BSCol SM="3">
-                    <BSBasicInput Id="PageValue" InputType="InputType.Number" PlaceHolder="1~X" Class="form-control-sm" @bind-Value="@Page"></BSBasicInput>
+                    <BSBasicInput Id="PageValue" InputType="InputType.Number" PlaceHolder="1~X" Class="form-control-sm" @bind-Value="@tableInput.Page"></BSBasicInput>
                 </BSCol>
                 <BSLabel For="LimitLable" SM="2">Limit</BSLabel>
                 <BSCol SM="3">
-                    <BSBasicInput Id="LimitValue" InputType="InputType.Number" PlaceHolder="1~1000" Class="form-control-sm" @bind-Value="@Limit"></BSBasicInput>
+                    <BSBasicInput Id="LimitValue" InputType="InputType.Number" PlaceHolder="1~1000" Class="form-control-sm" @bind-Value="@tableInput.Limit"></BSBasicInput>
                 </BSCol>
             </BSFormGroup>
 

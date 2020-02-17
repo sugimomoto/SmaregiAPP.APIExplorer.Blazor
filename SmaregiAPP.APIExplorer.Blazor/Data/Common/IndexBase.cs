@@ -27,25 +27,12 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
 
         public List<Table> tables = new List<Table>();
 
-        public List<ColumnInput> columnInput = new List<ColumnInput>();
+        public TableInput tableInput = new TableInput();
 
-        public string tableName { get; set; }
 
         public string RequestBody { get; set; }
 
         public string Response { get; set; }
-
-        public string OrderByColumn1 { get; set; }
-
-        public string OrderByColumn2 { get; set; }
-
-        public string OrderByType1 { get; set; }
-
-        public string OrderByType2 { get; set; }
-
-        public int Limit { get; set; } = 100;
-
-        public int Page { get; set; } = 1;
 
         public string ContactId { get; set; } = "";
 
@@ -69,13 +56,14 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         /// 選択されたテーブル名を元に、カラム一覧をCSVから取得して、リスト表示
         /// </summary>
         /// <param name="e"></param>
-        public async void ChangeColumnList(ChangeEventArgs e)
+        public void ChangeColumnList(ChangeEventArgs e)
         {
             this.AlertMessage = "";
             
             var targetTable = tables.FirstOrDefault(x => x.CDataTableName == e.Value.ToString());
             var filePath = Directory.GetCurrentDirectory() + @"\wwwroot\csv\" + targetTable.CDataTableName + ".csv";
-            columnInput.Clear();
+            tableInput.columnInput.Clear();
+            tableInput.tableName = "";
 
             if (targetTable == null)
             {
@@ -116,8 +104,10 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
                             JapaneseLabel = column.JapaneseLabel,
                             Description = column.Description
                         };
-                        columnInput.Add(input);
+                        tableInput.columnInput.Add(input);
                     }
+
+                    tableInput.tableName = targetTable.CDataTableName;
                 }
             }
             catch (Exception ex)
@@ -130,7 +120,7 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
         {
             var condtions = new List<Dictionary<string, string>>();
 
-            foreach (var item in columnInput)
+            foreach (var item in tableInput.columnInput)
             {
                 var dict = new Dictionary<string, string>();
 
@@ -146,18 +136,18 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
 
         private string[] GetFiledsRequest()
         {
-            return columnInput.Where(x => x.Select).Select(x => x.Name).ToArray();
+            return tableInput.columnInput.Where(x => x.Select).Select(x => x.Name).ToArray();
         }
 
         private string[] GetOrderRequest()
         {
             var orders = new List<string>();
 
-            if (!string.IsNullOrEmpty(OrderByColumn1))
-                orders.Add($"{OrderByColumn1} {(string.IsNullOrEmpty(OrderByType1) ? "asc" : OrderByType1)}");
+            if (!string.IsNullOrEmpty(tableInput.OrderByColumn1) && tableInput.OrderByColumn1 != "none")
+                orders.Add($"{tableInput.OrderByColumn1} {(string.IsNullOrEmpty(tableInput.OrderByType1) ? "ASC" : tableInput.OrderByType1)}");
 
-            if (!string.IsNullOrEmpty(OrderByColumn2))
-                orders.Add($"{OrderByColumn2} {(string.IsNullOrEmpty(OrderByType2) ? "asc" : OrderByType2)}");
+            if (!string.IsNullOrEmpty(tableInput.OrderByColumn2) && tableInput.OrderByColumn2 != "none")
+                orders.Add($"{tableInput.OrderByColumn2} {(string.IsNullOrEmpty(tableInput.OrderByType2) ? "ASC" : tableInput.OrderByType2)}");
 
             if (orders.Count == 0)
                 return null;
@@ -166,20 +156,18 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
                 return orders.ToArray();
         }
 
-        public async void GenerateRequest()
+        public void GenerateRequest()
         {
-            var procName = tables.Find(x => x.CDataTableName == tableName);
+            var procName = tables.Find(x => x.CDataTableName == tableInput.tableName);
             if (procName == null)
                 return;
-
-            columnInput = await JSRuntime.InvokeAsync<List<ColumnInput>>("tableDataManager.getTableValues");
 
             var referenceParams = new ReferenceParams();
 
             referenceParams.Fileds = GetFiledsRequest();
             referenceParams.Order = GetOrderRequest();
-            referenceParams.Limit = this.Limit;
-            referenceParams.Page = this.Page;
+            referenceParams.Limit = tableInput.Limit;
+            referenceParams.Page = tableInput.Page;
             referenceParams.TableName = procName.TableName;
             referenceParams.Conditions = GetConditionsRequest();
 
@@ -190,10 +178,9 @@ namespace SmaregiAPP.APIExplorer.Blazor.Data.Common
             this.StateHasChanged();
         }
 
-        public async void SetColumnInput()
-        {
-            // columnInput = await JSRuntime.InvokeAsync<List<ColumnInput>>("tableDataManager.getTableValues");
-        }
+        public void SetAllCheck() => tableInput.columnInput.ForEach(x => x.Select = true);
+
+        public void SetAllClear() => tableInput.columnInput.ForEach(x => x.Select = false);
 
         public async void Send()
         {
